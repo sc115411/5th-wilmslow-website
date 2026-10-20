@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>5th Wilmslow Scout Group</title>
+
+    <meta name="description"
+          content="5th Wilmslow Scout Group - Beavers, Cubs and Scouts. Adventure, friendship and skills for life.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #171717;
+            background: #f7f4ef;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVIGATION */
+
+        header {
+            background: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .logo {
+            color: #7413dc;
+            font-weight: 900;
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+
+        .logo span {
+            display: block;
+            color: #111111;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            margin-top: 6px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #7413dc;
+        }
+
+        .join-button {
+            background: #7413dc;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 50px;
+        }
+
+        .join-button:hover {
+            background: #5c0db0;
+            color: white;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            background: #7413dc;
+            color: white;
+            padding: 90px 6%;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .hero-label {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.95;
+            margin: 20px 0;
+            max-width: 900px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background: white;
+            color: #7413dc;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+
+
+        /* GENERAL SECTIONS */
+
+        .section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 75px 6%;
+        }
+
+        .eyebrow {
+            color: #088486;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        h2 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1;
+            margin: 12px 0 20px;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            max-width: 750px;
+        }
+
+
+        /* SECTION CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .emoji {
+            font-size: 2.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.7rem;
+            margin: 15px 0 8px;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+        }
+
+        .meeting-time {
+            color: #088486;
+            font-weight: bold;
+            margin-top: auto;
+        }
+
+
+        /* WHY SCOUTS */
+
+        .dark-section {
+            background: #111111;
+            color: white;
+        }
+
+        .dark-section .section {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .dark-section .intro {
+            color: #eeeeee;
+        }
+
+        .reasons {
+            display: grid;
+            gap: 12px;
+        }
+
+        .reason {
+            background: #252525;
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+
+        /* JOIN */
+
+        .join-section {
+            background: #088486;
+            color: white;
+            border-radius: 28px;
+            padding: 50px;
+        }
+
+        .join-section .eyebrow {
+            color: #d8ffff;
+        }
+
+        .join-section h2 {
+            margin-top: 10px;
+        }
+
+        .join-section p {
+            max-width: 650px;
+            font-size: 1.1rem;
+        }
+
+        .join-link {
+            display: inline-block;
+            margin-top: 20px;
+            background: white;
+            color: #111111;
+            padding: 13px 22px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            background: white;
+            padding: 35px 6%;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            nav a:not(.join-button) {
+                display: none;
+            }
+
+            .hero {
+                padding: 65px 5%;
+            }
+
+            .section {
+                padding: 55px 5%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .dark-section .section {
+                grid-template-columns: 1fr;
+            }
+
+            .join-section {
+                padding: 35px 25px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<header>
+
+    <a href="#" class="logo">
+        5TH WILMSLOW
+        <span>SCOUT GROUP</span>
+    </a>
+
+    <nav>
+
+        <a href="#sections">
+            Our sections
+        </a>
+
+        <a href="#join">
+            Join us
+        </a>
+
+        <a href="#where">
+            Find us
+        </a>
+
+        <a href="#join" class="join-button">
+            Join us
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            Beavers · Cubs · Scouts
+        </div>
+
+        <h1>
+            Adventure starts here.
+        </h1>
+
+        <p>
+            Welcome to 5th Wilmslow Scout Group.
+            A place to make friends, try new things,
+            get outdoors and build skills for life.
+        </p>
+
+        <a href="#join" class="hero-button">
+            Find out how to join →
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- SECTIONS -->
+
+<section class="section" id="sections">
+
+    <div class="eyebrow">
+        Find your section
+    </div>
+
+    <h2>
+        There's something for everyone.
+    </h2>
+
+    <p class="intro">
+        From first adventures to bigger challenges,
+        our Beavers, Cubs and Scouts get the chance
+        to learn, explore and have fun together.
+    </p>
+
+
+    <div class="cards">
+
+
+        <!-- BEAVERS -->
+
+        <article class="card">
+
+            <div class="emoji">
+                🦫
+            </div>
+
+            <h3>
+                Beavers
+            </h3>
+
+            <p>
+                Fun, friendship and adventure
+                for our youngest members.
+            </p>
+
+            <div class="meeting-time">
+                Fridays · Time to be confirmed
+            </div>
+
+        </article>
+
+
+        <!-- CUBS -->
+
+        <article class="card">
+
+            <div class="emoji">
+                🐺
+            </div>
+
+            <h3>
+                Cubs
+            </h3>
+
+            <p>
+                New experiences, challenges
+                and practical skills — with
+                plenty of fun along the way.
+            </p>
+
+            <div class="meeting-time">
+                Mondays · 6:30–8:00pm
+            </div>
+
+        </article>
+
+
+        <!-- SCOUTS -->
+
+        <article class="card">
+
+            <div class="emoji">
+                ⚜️
+            </div>
+
+            <h3>
+                Scouts
+            </h3>
+
+            <p>
+                Adventure, independence and
+                skills for life, with bigger
+                challenges and new experiences.
+            </p>
+
+            <div class="meeting-time">
+                Mondays · 6:30–8:00pm
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- WHY SCOUTS -->
+
+<section class="dark-section">
+
+    <div class="section">
+
+        <div>
+
+            <div class="eyebrow">
+                Why Scouts?
+            </div>
+
+            <h2>
+                More than just a weekly meeting.
+            </h2>
+
+            <p class="intro">
+                Scouts helps young people step up,
+                speak up and be their best.
+                At 5th Wilmslow, that means making
+                memories, learning useful skills and
+                having a go at things you might never
+                have tried before.
+            </p>
+
+        </div>
+
+
+        <div class="reasons">
+
+            <div class="reason">
+                <strong>
+                    01 · Have adventures
+                </strong>
+
+                <br>
+
+                Try something new and get outdoors.
+            </div>
+
+
+            <div class="reason">
+                <strong>
+                    02 · Make friends
+                </strong>
+
+                <br>
+
+                Be part of a friendly local group.
+            </div>
+
+
+            <div class="reason">
+                <strong>
+                    03 · Build skills for life
+                </strong>
+
+                <br>
+
+                Grow confidence, independence and
+                practical skills.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- JOIN -->
+
+<section class="section" id="join">
+
+    <div class="join-section">
+
+        <div class="eyebrow">
+            Ready to get involved?
+        </div>
+
+        <h2>
+            Join 5th Wilmslow.
+        </h2>
+
+        <p>
+            Interested in a place for your child?
+            Get in touch and we'll explain the next
+            steps and let you know about availability.
+        </p>
+
+        <!--
+        CHANGE THE EMAIL ADDRESS BELOW
+        -->
+
+        <a
+            href="mailto:YOUR-EMAIL-HERE"
+            class="join-link">
+
+            Make an enquiry →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- WHERE WE MEET -->
+
+<section class="section" id="where">
+
+    <div class="eyebrow">
+        Find us
+    </div>
+
+    <h2>
+        Wilmslow Methodist Church
+    </h2>
+
+    <p class="intro">
+        Our group meets at Wilmslow Methodist Church.
+        Full meeting details and directions can be
+        added here.
+    </p>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <strong>
+                5th Wilmslow Scout Group
+            </strong>
+
+            <br>
+
+            Beavers · Cubs · Scouts
+        </div>
+
+        <div>
+            Part of Scouts · Skills for life
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
