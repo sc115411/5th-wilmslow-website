@@ -1,56 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>5th Wilmslow Scout Group</title>
 
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="scouts-fleur-de-lis-logo.png">
-
-  <meta
-    name="description"
-    content="5th Wilmslow Scout Group - Beavers, Cubs and Scouts in Wilmslow, Cheshire."
-  >
 
   <!-- Nunito Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap"
     rel="stylesheet"
   >
 
   <style>
-
-    /* =========================
-       COLOURS
-    ========================= */
-
     :root {
       --purple: #7413dc;
       --purple-dark: #4d0b91;
 
-      --beavers-blue: #036de0;
-      --cubs-green: #23a855;
-      --scouts-teal: #00a794;
+      /* Main website teal */
+      --teal: #00a794;
+      --teal-light: #dff7f5;
 
-      --yellow: #ffe627;
-
+      --yellow: #f9c74f;
       --cream: #f7f4ef;
-      --black: #000000;
+      --black: #151515;
       --grey: #666666;
       --white: #ffffff;
 
-      --light-grey: #eeeeee;
+      /* Section colours */
+      --beavers: #036de0;
+      --cubs: #23a855;
+      --scouts: #205b41;
+
+      --max-width: 1180px;
+      --radius: 12px;
     }
-
-
-    /* =========================
-       BASIC RESET
-    ========================= */
 
     * {
       box-sizing: border-box;
@@ -69,43 +58,45 @@
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
     img {
       max-width: 100%;
       display: block;
     }
 
-    .container {
-      width: min(1150px, 92%);
-      margin: auto;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+    }
 
     /* =========================
        HEADER
     ========================= */
 
     header {
+      background: var(--white);
+      border-bottom: 1px solid #eeeeee;
       position: sticky;
       top: 0;
       z-index: 1000;
-
-      background: white;
-
-      border-bottom: 1px solid #dddddd;
     }
 
-    .nav {
-      min-height: 72px;
-
+    .header-inner {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 25px;
     }
 
@@ -113,108 +104,79 @@
       display: flex;
       align-items: center;
       gap: 12px;
-
       font-weight: 900;
     }
-
-    /* Fleur-de-lis */
 
     .brand-mark {
       width: 46px;
       height: 46px;
-
       background: transparent;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
-      padding: 3px;
-
+      padding: 4px;
       flex-shrink: 0;
     }
 
     .brand-mark img {
       width: 100%;
       height: 100%;
-
       object-fit: contain;
     }
 
     .brand-text {
+      display: flex;
+      flex-direction: column;
       line-height: 1.05;
     }
 
     .brand-text strong {
-      display: block;
-
       font-size: 16px;
-
-      letter-spacing: .4px;
+      letter-spacing: 0.5px;
     }
 
     .brand-text span {
-      display: block;
-
-      font-size: 12px;
-
+      font-size: 11px;
       color: var(--grey);
-
-      margin-top: 3px;
-
-      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 4px;
     }
-
-
-    /* Navigation */
 
     nav {
       display: flex;
       align-items: center;
-
       gap: 28px;
     }
 
     nav a {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 15px;
+      transition: color 0.2s ease;
     }
 
     nav a:hover {
-      color: var(--purple);
+      color: var(--teal);
     }
 
-    .nav-button {
-      background: var(--purple);
-      color: white;
-
+    .nav-join {
+      background: var(--teal);
+      color: var(--white);
       padding: 11px 18px;
-
-      border-radius: 5px;
+      border-radius: 7px;
     }
 
-    .nav-button:hover {
-      background: var(--purple-dark);
-      color: white;
+    .nav-join:hover {
+      color: var(--white);
+      background: #008f7f;
     }
 
     .menu-button {
       display: none;
-
       border: 0;
-
-      background: var(--purple);
-      color: white;
-
-      padding: 9px 13px;
-
-      border-radius: 5px;
-
-      font-size: 20px;
-
+      background: transparent;
       cursor: pointer;
+      font-size: 28px;
     }
-
 
     /* =========================
        HERO
@@ -222,152 +184,120 @@
 
     .hero {
       background: var(--purple);
-
-      color: white;
-
-      padding: 95px 0 100px;
-
+      color: var(--white);
+      padding: 90px 0 95px;
       position: relative;
-
       overflow: hidden;
     }
 
     .hero::after {
       content: "";
-
       position: absolute;
-
-      width: 450px;
-      height: 450px;
-
-      border: 70px solid rgba(255,255,255,.08);
-
+      width: 420px;
+      height: 420px;
       border-radius: 50%;
-
-      right: -180px;
+      background: rgba(255,255,255,0.06);
+      right: -150px;
       top: -180px;
     }
 
     .hero-content {
+      max-width: 800px;
       position: relative;
-
-      z-index: 1;
-
-      max-width: 780px;
+      z-index: 2;
     }
 
     .eyebrow {
-      text-transform: uppercase;
-
-      font-weight: 900;
-
-      letter-spacing: 1.5px;
-
+      display: inline-block;
       font-size: 14px;
-
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
       margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: clamp(44px, 7vw, 76px);
-
-      line-height: .98;
-
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: 0.98;
       letter-spacing: -2px;
-
-      margin-bottom: 25px;
-
+      margin-bottom: 28px;
       font-weight: 900;
     }
 
     .hero p {
-      max-width: 650px;
-
       font-size: 20px;
-
-      line-height: 1.55;
-
-      margin-bottom: 35px;
+      max-width: 680px;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 32px;
     }
 
     .hero-buttons {
       display: flex;
-
-      flex-wrap: wrap;
-
       gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .button {
-      display: inline-block;
-
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
       padding: 14px 22px;
-
-      border-radius: 5px;
-
-      font-weight: 900;
-
-      transition: .2s ease;
+      border-radius: 7px;
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
-    .button-primary {
-      background: white;
-
-      color: var(--purple);
-    }
-
-    .button-primary:hover {
+    .btn:hover {
       transform: translateY(-2px);
     }
 
-    .button-secondary {
-      border: 2px solid white;
-
-      color: white;
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
     }
 
-    .button-secondary:hover {
-      background: white;
+    .btn-primary:hover {
+      background: #008f7f;
+    }
 
+    .btn-light {
+      background: var(--white);
       color: var(--purple);
     }
 
+    .btn-light:hover {
+      background: #f3f3f3;
+    }
 
     /* =========================
-       GENERAL SECTIONS
+       SECTION INTRO
     ========================= */
 
-    section {
-      padding: 80px 0;
+    .section {
+      padding: 85px 0;
     }
 
     .section-heading {
       max-width: 720px;
-
       margin-bottom: 45px;
     }
 
     .section-heading h2 {
       font-size: clamp(34px, 5vw, 52px);
-
       line-height: 1.05;
-
-      margin-bottom: 14px;
-
-      letter-spacing: -1px;
-
       font-weight: 900;
+      margin-bottom: 15px;
     }
 
     .section-heading p {
       color: var(--grey);
-
       font-size: 18px;
     }
 
-
     /* =========================
-       OUR SECTIONS
+       GROUP CARDS
     ========================= */
 
     .groups {
@@ -376,103 +306,80 @@
 
     .group-grid {
       display: grid;
-
       grid-template-columns: repeat(3, 1fr);
-
       gap: 24px;
     }
 
     .group-card {
-      background: white;
-
-      border: 1px solid #dddddd;
-
-      padding: 30px;
-
-      transition: .2s ease;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .group-card:hover {
       transform: translateY(-5px);
-
-      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.10);
     }
 
-
-    /* Section colours */
-
     .group-card.beavers {
-  border-top: 8px solid #036de0;
-}
+      border-top: 8px solid #036de0;
+    }
 
-.group-card.cubs {
-  border-top: 8px solid #23a855;
-}
+    .group-card.cubs {
+      border-top: 8px solid #23a855;
+    }
 
-.group-card.scouts {
-  border-top: 8px solid #205b41;
-}
+    .group-card.scouts {
+      border-top: 8px solid #205b41;
+    }
 
-
-    /* =========================
-       SECTION LOGOS
-    ========================= */
+    .group-card-content {
+      padding: 30px;
+    }
 
     .section-logo {
       height: 115px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       margin-bottom: 20px;
     }
 
     .section-logo img {
       width: auto;
-
       height: 95px;
-
       max-width: 190px;
-
       object-fit: contain;
     }
 
-
     .group-card h3 {
-      font-size: 29px;
-
-      margin-bottom: 5px;
-
+      font-size: 30px;
       font-weight: 900;
+      margin-bottom: 8px;
     }
 
-    .age {
+    .group-age {
       font-weight: 800;
-
+      margin-bottom: 18px;
       color: var(--grey);
-
-      margin-bottom: 17px;
     }
 
     .group-card p {
-      margin-bottom: 18px;
+      color: var(--grey);
+      margin-bottom: 22px;
     }
 
-    .meeting {
-      background: var(--cream);
-
-      padding: 14px 16px;
-
-      margin-top: 20px;
-
-      font-weight: 800;
-
-      border-left: 5px solid var(--purple);
+    .group-info {
+      border-top: 1px solid #eeeeee;
+      padding-top: 18px;
     }
 
+    .group-info strong {
+      display: block;
+      margin-bottom: 4px;
+    }
 
     /* =========================
        SKILLS
@@ -480,8 +387,7 @@
 
     .skills {
       background: var(--black);
-
-      color: white;
+      color: var(--white);
     }
 
     .skills .section-heading p {
@@ -490,91 +396,46 @@
 
     .skills-grid {
       display: grid;
-
-      grid-template-columns: repeat(4, 1fr);
-
-      gap: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
     }
 
     .skill {
-      border: 1px solid #444444;
-
-      padding: 24px;
-
-      min-height: 180px;
-    }
-
-    .skill-number {
-      font-size: 42px;
-
-      font-weight: 900;
-
-      color: var(--yellow);
-
-      line-height: 1;
-
-      margin-bottom: 20px;
+      border-top: 3px solid var(--teal);
+      padding-top: 20px;
     }
 
     .skill h3 {
-      font-size: 22px;
-
-      margin-bottom: 8px;
+      font-size: 25px;
+      margin-bottom: 10px;
     }
 
     .skill p {
       color: #cccccc;
     }
 
-
     /* =========================
-       YELLOW STRIP
+       TEAL CTA
     ========================= */
 
-    .yellow-strip {
-      background: var(--yellow);
-
-      padding: 42px 0;
+    .teal-strip {
+      background: var(--teal);
+      color: var(--white);
+      padding: 55px 0;
     }
 
-    .yellow-content {
+    .teal-strip-inner {
       display: flex;
-
-      justify-content: space-between;
-
       align-items: center;
-
+      justify-content: space-between;
       gap: 30px;
     }
 
-    .yellow-content h2 {
-      font-size: clamp(30px, 4vw, 44px);
-
-      line-height: 1;
-
+    .teal-strip h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.05;
       font-weight: 900;
     }
-
-    .yellow-content p {
-      margin-top: 8px;
-
-      font-weight: 700;
-    }
-
-    .dark-button {
-      background: var(--black);
-
-      color: white;
-
-      padding: 14px 22px;
-
-      border-radius: 5px;
-
-      font-weight: 900;
-
-      white-space: nowrap;
-    }
-
 
     /* =========================
        LOCATION
@@ -582,62 +443,44 @@
 
     .location-grid {
       display: grid;
-
       grid-template-columns: 1fr 1fr;
-
-      gap: 35px;
-
-      align-items: stretch;
+      gap: 50px;
+      align-items: center;
     }
 
-    .location-card {
-      background: #dff7f5;
-
-      padding: 35px;
-
-      border-left: 7px solid #087f81;
-    }
-
-    .location-card h3 {
-      font-size: 30px;
-
-      margin-bottom: 15px;
-
+    .location-info h2 {
+      font-size: 42px;
+      line-height: 1.05;
+      margin-bottom: 18px;
       font-weight: 900;
     }
 
-    .location-card p {
-      margin-bottom: 18px;
+    .location-info p {
+      color: var(--grey);
+      margin-bottom: 22px;
+      font-size: 18px;
     }
 
     .map-box {
+      background: #eeeeee;
       min-height: 330px;
-
-      background: #dddddd;
-
+      border-radius: var(--radius);
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       text-align: center;
-
       padding: 30px;
     }
 
-    .map-box a {
-      background: var(--purple);
-
-      color: white;
-
-      padding: 14px 20px;
-
-      border-radius: 5px;
-
-      font-weight: 900;
+    .map-box h3 {
+      font-size: 25px;
+      margin-bottom: 10px;
     }
 
+    .map-box p {
+      color: var(--grey);
+      margin-bottom: 18px;
+    }
 
     /* =========================
        FAQ
@@ -651,191 +494,165 @@
       max-width: 850px;
     }
 
-    details {
-      background: white;
-
-      border: 1px solid #dddddd;
-
+    .faq-item {
+      background: var(--white);
+      border-radius: 8px;
       margin-bottom: 12px;
+      overflow: hidden;
     }
 
-    summary {
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 22px 25px;
+      text-align: left;
+      font-weight: 800;
+      font-size: 17px;
       cursor: pointer;
-
-      padding: 20px;
-
-      font-weight: 900;
-
-      font-size: 18px;
-
-      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    summary::-webkit-details-marker {
+    .faq-answer {
       display: none;
-    }
-
-    summary::after {
-      content: "+";
-
-      float: right;
-
-      font-size: 24px;
-    }
-
-    details[open] summary::after {
-      content: "−";
-    }
-
-    details p {
-      padding: 0 20px 20px;
-
+      padding: 0 25px 22px;
       color: var(--grey);
     }
 
+    .faq-item.active .faq-answer {
+      display: block;
+    }
 
     /* =========================
-       JOIN
+       JOIN FORM
     ========================= */
 
     .join {
-      background: #087f81;
-
-      color: white;
+      background: var(--purple);
+      color: var(--white);
     }
 
-    .join .section-heading p {
-      color: #d8eeee;
+    .join-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 60px;
+      align-items: start;
     }
 
-    .join-box {
-      background: white;
+    .join-copy h2 {
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
 
+    .join-copy p {
+      color: rgba(255,255,255,0.9);
+      font-size: 18px;
+    }
+
+    .join-form {
+      background: var(--white);
       color: var(--black);
-
-      padding: 35px;
-
-      max-width: 850px;
+      padding: 32px;
+      border-radius: var(--radius);
     }
 
     .form-grid {
       display: grid;
-
       grid-template-columns: 1fr 1fr;
-
-      gap: 18px;
+      gap: 20px;
     }
 
     .form-group {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 7px;
+      margin-bottom: 20px;
     }
 
-    .form-group.full {
-      grid-column: 1 / -1;
+    .form-group label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 7px;
     }
 
-    label {
-      font-weight: 900;
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      padding: 12px 14px;
+      outline: none;
+      background: var(--white);
     }
 
-    input,
-    textarea,
-    select {
-      font-family: "Nunito Sans", Arial, sans-serif;
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,167,148,0.12);
+    }
 
-      font-size: 16px;
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
 
-      border: 1px solid #bbbbbb;
-
-      padding: 13px;
-
-      border-radius: 4px;
-
+    .join-form .btn {
       width: 100%;
     }
 
-    textarea {
-      min-height: 130px;
-
-      resize: vertical;
+    .form-success {
+      background: #e7f8f3;
+      color: #075e50;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 18px;
+      font-weight: 700;
     }
 
-    .submit-button {
-      margin-top: 20px;
-
-      border: 0;
-
-      background: var(--purple);
-
-      color: white;
-
-      padding: 14px 22px;
-
-      border-radius: 5px;
-
-      font-family: "Nunito Sans", Arial, sans-serif;
-
-      font-size: 16px;
-
-      font-weight: 900;
-
-      cursor: pointer;
+    .form-error {
+      background: #ffe9e9;
+      color: #9a1c1c;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 18px;
+      font-weight: 700;
     }
 
-    .submit-button:hover {
-      background: var(--purple-dark);
+    .join-form button:disabled {
+      opacity: 0.65;
+      cursor: wait;
+      transform: none;
     }
-
 
     /* =========================
        FOOTER
     ========================= */
 
     footer {
-      background: #111111;
-
-      color: white;
-
+      background: #101010;
+      color: var(--white);
       padding: 45px 0;
     }
 
-    .footer-grid {
-      display: grid;
-
-      grid-template-columns: 2fr 1fr 1fr;
-
-      gap: 40px;
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: center;
     }
 
-    footer h3 {
-      margin-bottom: 12px;
+    .footer-brand {
+      font-weight: 900;
+      font-size: 18px;
     }
 
-    footer p,
-    footer a {
-      color: #bbbbbb;
-    }
-
-    footer a:hover {
-      color: white;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid #333333;
-
-      margin-top: 35px;
-
-      padding-top: 20px;
-
-      color: #888888;
-
+    .footer-copy {
+      color: #aaaaaa;
       font-size: 14px;
     }
-
 
     /* =========================
        MOBILE
@@ -845,24 +662,15 @@
 
       nav {
         display: none;
-
         position: absolute;
-
+        top: 76px;
         left: 0;
         right: 0;
-
-        top: 72px;
-
-        background: white;
-
-        border-bottom: 1px solid #dddddd;
-
+        background: var(--white);
         padding: 20px;
-
+        border-bottom: 1px solid #eeeeee;
         flex-direction: column;
-
         align-items: stretch;
-
         gap: 5px;
       }
 
@@ -874,48 +682,64 @@
         padding: 12px;
       }
 
+      .nav-join {
+        text-align: center;
+      }
+
       .menu-button {
         display: block;
       }
 
       .group-grid,
-      .skills-grid,
-      .location-grid {
+      .skills-grid {
         grid-template-columns: 1fr;
       }
 
-      .yellow-content {
+      .location-grid,
+      .join-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .teal-strip-inner {
         flex-direction: column;
-
         align-items: flex-start;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
       }
     }
 
-
     @media (max-width: 600px) {
 
+      .container {
+        width: min(var(--max-width), calc(100% - 28px));
+      }
+
       .hero {
-        padding: 70px 0 75px;
+        padding: 70px 0;
       }
 
       .hero h1 {
-        font-size: 48px;
+        letter-spacing: -1px;
       }
 
-      section {
-        padding: 60px 0;
+      .hero p {
+        font-size: 17px;
+      }
+
+      .section {
+        padding: 65px 0;
       }
 
       .form-grid {
         grid-template-columns: 1fr;
+        gap: 0;
       }
 
-      .form-group.full {
-        grid-column: auto;
+      .join-form {
+        padding: 22px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .brand-text strong {
@@ -925,91 +749,43 @@
       .brand-text span {
         font-size: 10px;
       }
-
-      .section-logo {
-        height: 100px;
-      }
-
-      .section-logo img {
-        height: 85px;
-      }
     }
-
   </style>
 </head>
 
-
 <body>
-
 
   <!-- =========================
        HEADER
   ========================= -->
 
   <header>
-
-    <div class="container nav">
+    <div class="container header-inner">
 
       <a href="#" class="brand">
-
         <div class="brand-mark">
-
-          <img
-            src="scouts-fleur-de-lis-logo.png"
-            alt="Scouts"
-          >
-
+          <img src="scouts-fleur-de-lis-logo.png" alt="Scouts">
         </div>
 
         <div class="brand-text">
-
           <strong>5TH WILMSLOW</strong>
-
           <span>SCOUT GROUP</span>
-
         </div>
-
       </a>
 
-
-      <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Open menu"
-      >
+      <button class="menu-button" id="menuButton" aria-label="Open menu">
         ☰
       </button>
 
-
       <nav id="mainNav">
-
-        <a href="#groups">
-          Our Sections
-        </a>
-
-        <a href="#skills">
-          Skills
-        </a>
-
-        <a href="#location">
-          Where We Meet
-        </a>
-
-        <a href="#faq">
-          FAQ
-        </a>
-
-        <a
-          href="#join"
-          class="nav-button"
-        >
-          Join Us
-        </a>
-
+        <a href="#groups">Sections</a>
+        <a href="#skills">Skills</a>
+        <a href="#location">Where we meet</a>
+        <a href="#faq">FAQs</a>
+        <a href="#join" class="nav-join">Join us</a>
       </nav>
 
     </div>
-
   </header>
 
 
@@ -1020,189 +796,145 @@
   <main>
 
     <section class="hero">
+      <div class="container">
+        <div class="hero-content">
 
-      <div class="container hero-content">
+          <span class="eyebrow">5th Wilmslow Scout Group</span>
 
-        <div class="eyebrow">
-          5th Wilmslow Scout Group
-        </div>
+          <h1>
+            Adventure<br>
+            starts here.
+          </h1>
 
-        <h1>
-          Adventure<br>
-          starts here.
-        </h1>
+          <p>
+            Helping young people in Wilmslow develop skills for life,
+            make friends and have adventures along the way.
+          </p>
 
-        <p>
-          Beavers, Cubs and Scouts in Wilmslow, Cheshire.
-          Make friends, try new things and build skills for life.
-        </p>
+          <div class="hero-buttons">
+            <a href="#join" class="btn btn-primary">
+              Join the group
+            </a>
 
-        <div class="hero-buttons">
-
-          <a
-            href="#join"
-            class="button button-primary"
-          >
-            Join the group
-          </a>
-
-          <a
-            href="#groups"
-            class="button button-secondary"
-          >
-            Find your section
-          </a>
+            <a href="#groups" class="btn btn-light">
+              Explore our sections
+            </a>
+          </div>
 
         </div>
-
       </div>
-
     </section>
 
 
     <!-- =========================
-         OUR SECTIONS
+         GROUPS
     ========================= -->
 
-    <section
-      class="groups"
-      id="groups"
-    >
-
+    <section class="section groups" id="groups">
       <div class="container">
 
         <div class="section-heading">
+          <span class="eyebrow">Our sections</span>
 
-          <h2>
-            Something for everyone.
-          </h2>
+          <h2>Something for every age.</h2>
 
           <p>
-            From first adventures to bigger challenges,
-            there's a place for young people at 5th Wilmslow.
+            From first adventures to bigger challenges, there's a place
+            for young people to learn, explore and have fun.
           </p>
-
         </div>
 
 
         <div class="group-grid">
 
-
           <!-- BEAVERS -->
 
           <article class="group-card beavers">
+            <div class="group-card-content">
 
-            <div class="section-logo">
+              <div class="section-logo">
+                <img src="beavers.png" alt="Beavers">
+              </div>
 
-              <img
-                src="beavers.png"
-                alt="Beavers"
-              >
+              <h3>Beavers</h3>
 
-            </div>
+              <div class="group-age">
+                Ages 6–8
+              </div>
 
-            <h3>
-              Beavers
-            </h3>
+              <p>
+                Beavers get their first taste of Scouting through
+                games, activities, adventures and making new friends.
+              </p>
 
-            <div class="age">
-              Ages 6–8
-            </div>
-
-            <p>
-              A chance to make new friends, explore the outdoors,
-              learn new skills and have lots of fun.
-            </p>
-
-            <div class="meeting">
-
-              Friday<br>
-
-              Time TBC
+              <div class="group-info">
+                <strong>When</strong>
+                Friday
+              </div>
 
             </div>
-
           </article>
 
 
           <!-- CUBS -->
 
           <article class="group-card cubs">
+            <div class="group-card-content">
 
-            <div class="section-logo">
+              <div class="section-logo">
+                <img src="cubs.png" alt="Cubs">
+              </div>
 
-              <img
-                src="cubs.png"
-                alt="Cubs"
-              >
+              <h3>Cubs</h3>
 
-            </div>
+              <div class="group-age">
+                Ages 8–10½
+              </div>
 
-            <h3>
-              Cubs
-            </h3>
+              <p>
+                Cubs take on challenges, learn new skills and enjoy
+                everything from outdoor adventures to creative activities.
+              </p>
 
-            <div class="age">
-              Ages 8–10½
-            </div>
-
-            <p>
-              Bigger adventures, exciting challenges and
-              opportunities to discover what you're capable of.
-            </p>
-
-            <div class="meeting">
-
-              Monday<br>
-
-              6:30pm–8:00pm
+              <div class="group-info">
+                <strong>When</strong>
+                Monday, 6:30pm–8:00pm
+              </div>
 
             </div>
-
           </article>
 
 
           <!-- SCOUTS -->
 
           <article class="group-card scouts">
+            <div class="group-card-content">
 
-            <div class="section-logo">
+              <div class="section-logo">
+                <img src="scouts.png" alt="Scouts">
+              </div>
 
-              <img
-                src="scouts.png"
-                alt="Scouts"
-              >
+              <h3>Scouts</h3>
 
-            </div>
+              <div class="group-age">
+                Ages 10½–14
+              </div>
 
-            <h3>
-              Scouts
-            </h3>
+              <p>
+                Scouts take on bigger adventures, develop independence
+                and build practical skills that last a lifetime.
+              </p>
 
-            <div class="age">
-              Ages 10½–14
-            </div>
-
-            <p>
-              Take on bigger challenges, develop independence
-              and get ready for whatever comes next.
-            </p>
-
-            <div class="meeting">
-
-              Monday<br>
-
-              6:30pm–8:00pm
+              <div class="group-info">
+                <strong>When</strong>
+                Monday, 6:30pm–8:00pm
+              </div>
 
             </div>
-
           </article>
 
-
         </div>
-
       </div>
-
     </section>
 
 
@@ -1210,135 +942,70 @@
          SKILLS
     ========================= -->
 
-    <section
-      class="skills"
-      id="skills"
-    >
-
+    <section class="section skills" id="skills">
       <div class="container">
 
         <div class="section-heading">
+          <span class="eyebrow">More than just activities</span>
 
-          <h2>
-            Skills for life.
-          </h2>
+          <h2>Skills for life.</h2>
 
           <p>
-            Scouts isn't just about badges. It's about giving
-            young people the confidence and skills they need
-            for whatever comes next.
+            Scouting gives young people the confidence, independence
+            and experience to deal with whatever comes next.
           </p>
-
         </div>
 
 
         <div class="skills-grid">
 
-
           <div class="skill">
-
-            <div class="skill-number">
-              01
-            </div>
-
-            <h3>
-              Confidence
-            </h3>
-
+            <h3>Confidence</h3>
             <p>
-              Try new things and discover what you can do.
+              Try new things, take on challenges and discover what
+              you're capable of.
             </p>
-
           </div>
 
-
           <div class="skill">
-
-            <div class="skill-number">
-              02
-            </div>
-
-            <h3>
-              Teamwork
-            </h3>
-
+            <h3>Teamwork</h3>
             <p>
-              Work together, make friends and support others.
+              Work together, make friends and learn how to support
+              the people around you.
             </p>
-
           </div>
 
-
           <div class="skill">
-
-            <div class="skill-number">
-              03
-            </div>
-
-            <h3>
-              Adventure
-            </h3>
-
+            <h3>Adventure</h3>
             <p>
-              Get outdoors and experience something different.
+              Get outside, explore new places and make memories
+              along the way.
             </p>
-
           </div>
-
-
-          <div class="skill">
-
-            <div class="skill-number">
-              04
-            </div>
-
-            <h3>
-              Independence
-            </h3>
-
-            <p>
-              Learn practical skills and take on new challenges.
-            </p>
-
-          </div>
-
 
         </div>
 
       </div>
-
     </section>
 
 
     <!-- =========================
-         YELLOW CTA
+         TEAL STRIP
     ========================= -->
 
-    <section class="yellow-strip">
+    <section class="teal-strip">
+      <div class="container teal-strip-inner">
 
-      <div class="container yellow-content">
+        <h2>
+          Skills for life<br>
+          start here.
+        </h2>
 
-        <div>
-
-          <h2>
-            Ready for an adventure?
-          </h2>
-
-          <p>
-            Find out more about joining 5th Wilmslow Scout Group.
-          </p>
-
-        </div>
-
-        <a
-          href="#join"
-          class="dark-button"
-        >
-          Get in touch
+        <a href="#join" class="btn btn-light">
+          Find out how to join
         </a>
 
       </div>
-
     </section>
 
 
@@ -1346,48 +1013,27 @@
          LOCATION
     ========================= -->
 
-    <section id="location">
-
+    <section class="section" id="location">
       <div class="container">
-
-        <div class="section-heading">
-
-          <h2>
-            Where we meet.
-          </h2>
-
-          <p>
-            We're based in Wilmslow and welcome young people
-            from the surrounding area.
-          </p>
-
-        </div>
-
 
         <div class="location-grid">
 
+          <div class="location-info">
 
-          <div class="location-card">
+            <span class="eyebrow">Where we meet</span>
 
-            <h3>
-              Wilmslow Methodist Church
-            </h3>
-
-            <p>
-              Wilmslow, Cheshire
-            </p>
+            <h2>Wilmslow Methodist Church</h2>
 
             <p>
-              Our Beavers, Cubs and Scouts sections meet
-              throughout the week.
+              Our Scout group meets at Wilmslow Methodist Church
+              in Wilmslow, Cheshire.
             </p>
 
             <a
               href="https://www.google.com/maps/search/?api=1&query=Wilmslow+Methodist+Church"
               target="_blank"
               rel="noopener"
-              class="button"
-              style="background:#087f81;color:white;"
+              class="btn btn-primary"
             >
               Open in Google Maps
             </a>
@@ -1397,21 +1043,28 @@
 
           <div class="map-box">
 
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Wilmslow+Methodist+Church"
-              target="_blank"
-              rel="noopener"
-            >
-              View our location
-            </a>
+            <div>
+              <h3>Wilmslow Methodist Church</h3>
+
+              <p>
+                Wilmslow, Cheshire
+              </p>
+
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Wilmslow+Methodist+Church"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-primary"
+              >
+                Get directions
+              </a>
+            </div>
 
           </div>
-
 
         </div>
 
       </div>
-
     </section>
 
 
@@ -1419,94 +1072,101 @@
          FAQ
     ========================= -->
 
-    <section
-      class="faq"
-      id="faq"
-    >
-
+    <section class="section faq" id="faq">
       <div class="container">
 
         <div class="section-heading">
+          <span class="eyebrow">Questions</span>
 
-          <h2>
-            Frequently asked questions.
-          </h2>
+          <h2>Frequently asked questions.</h2>
 
           <p>
-            A few things parents often want to know before
-            getting in touch.
+            Here are some of the things parents often want to know.
           </p>
-
         </div>
 
 
         <div class="faq-list">
 
+          <div class="faq-item">
+            <button class="faq-question">
+              What age can my child join?
+              <span>+</span>
+            </button>
 
-          <details>
-
-            <summary>
-              How do I join?
-            </summary>
-
-            <p>
-              Fill in the enquiry form below and we'll get back
-              to you with information about the appropriate
-              section and the next steps.
-            </p>
-
-          </details>
-
-
-          <details>
-
-            <summary>
-              Do I need any previous experience?
-            </summary>
-
-            <p>
-              No. Scouts is about trying new things, learning
-              skills and having adventures. You don't need to
-              have any previous experience.
-            </p>
-
-          </details>
+            <div class="faq-answer">
+              <p>
+                Beavers are for ages 6–8, Cubs for ages 8–10½,
+                and Scouts for ages 10½–14.
+              </p>
+            </div>
+          </div>
 
 
-          <details>
+          <div class="faq-item">
+            <button class="faq-question">
+              Where do you meet?
+              <span>+</span>
+            </button>
 
-            <summary>
-              What should I bring?
-            </summary>
-
-            <p>
-              We'll let you know what you need for your first
-              meeting. For most activities, comfortable
-              clothing and suitable footwear are a good start.
-            </p>
-
-          </details>
+            <div class="faq-answer">
+              <p>
+                We meet at Wilmslow Methodist Church in Wilmslow,
+                Cheshire.
+              </p>
+            </div>
+          </div>
 
 
-          <details>
+          <div class="faq-item">
+            <button class="faq-question">
+              Do I need to come to a meeting before joining?
+              <span>+</span>
+            </button>
 
-            <summary>
-              Can parents help?
-            </summary>
+            <div class="faq-answer">
+              <p>
+                Get in touch using the enquiry form and we'll let
+                you know the best way to come along and find out
+                more.
+              </p>
+            </div>
+          </div>
 
-            <p>
-              Absolutely. Volunteers are an important part of
-              Scouts. If you'd like to help, mention it when
-              you contact us.
-            </p>
 
-          </details>
+          <div class="faq-item">
+            <button class="faq-question">
+              What should my child bring?
+              <span>+</span>
+            </button>
 
+            <div class="faq-answer">
+              <p>
+                We'll let you know what your child needs for their
+                particular meeting or activity. For outdoor activities,
+                suitable clothing and footwear are especially important.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I enquire about joining?
+              <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+              <p>
+                Complete the enquiry form below and we'll get back
+                to you.
+              </p>
+            </div>
+          </div>
 
         </div>
 
       </div>
-
     </section>
 
 
@@ -1514,169 +1174,183 @@
          JOIN
     ========================= -->
 
-    <section
-      class="join"
-      id="join"
-    >
-
+    <section class="section join" id="join">
       <div class="container">
 
-        <div class="section-heading">
+        <div class="join-grid">
 
-          <h2>
-            Join 5th Wilmslow.
-          </h2>
+          <div class="join-copy">
 
-          <p>
-            Interested in joining? Send us an enquiry and
-            we'll get back to you.
-          </p>
+            <span class="eyebrow">Ready to get started?</span>
 
-        </div>
+            <h2>
+              Come and join us.
+            </h2>
+
+            <p>
+              Fill in the form and we'll get back to you with
+              information about joining 5th Wilmslow Scout Group.
+            </p>
+
+          </div>
 
 
-        <div class="join-box">
+          <!-- FORM -->
 
           <form
-            action="mailto:iandkennedy1@gmail.com"
-            method="post"
-            enctype="text/plain"
+            action="https://formspree.io/f/xvkkayzp"
+            method="POST"
+            class="join-form"
+            id="joinForm"
           >
-
 
             <div class="form-grid">
 
-
               <div class="form-group">
-
-                <label for="parent">
-                  Parent / carer name
+                <label for="parent-name">
+                  Parent/guardian name *
                 </label>
 
                 <input
                   type="text"
-                  id="parent"
-                  name="Parent / Carer"
+                  id="parent-name"
+                  name="parent_name"
+                  autocomplete="name"
                   required
                 >
-
               </div>
 
 
               <div class="form-group">
-
-                <label for="child">
-                  Young person's name
-                </label>
-
-                <input
-                  type="text"
-                  id="child"
-                  name="Young Person"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="age">
-                  Young person's age
-                </label>
-
-                <input
-                  type="number"
-                  id="age"
-                  name="Age"
-                  min="5"
-                  max="18"
-                  required
-                >
-
-              </div>
-
-
-              <div class="form-group">
-
-                <label for="section">
-                  Interested in
-                </label>
-
-                <select
-                  id="section"
-                  name="Section"
-                >
-
-                  <option value="Not sure">
-                    Not sure
-                  </option>
-
-                  <option value="Beavers">
-                    Beavers
-                  </option>
-
-                  <option value="Cubs">
-                    Cubs
-                  </option>
-
-                  <option value="Scouts">
-                    Scouts
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <div class="form-group full">
-
                 <label for="email">
-                  Email address
+                  Email address *
                 </label>
 
                 <input
                   type="email"
                   id="email"
-                  name="Email"
+                  name="email"
+                  autocomplete="email"
                   required
                 >
-
               </div>
 
 
-              <div class="form-group full">
-
-                <label for="message">
-                  Message
+              <div class="form-group">
+                <label for="child-name">
+                  Child's name *
                 </label>
 
-                <textarea
-                  id="message"
-                  name="Message"
-                  placeholder="Tell us anything you'd like us to know."
-                ></textarea>
-
+                <input
+                  type="text"
+                  id="child-name"
+                  name="child_name"
+                  required
+                >
               </div>
 
+
+              <div class="form-group">
+                <label for="age">
+                  Child's age *
+                </label>
+
+                <input
+                  type="number"
+                  id="age"
+                  name="child_age"
+                  min="4"
+                  max="18"
+                  required
+                >
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="section">
+                Which section are you interested in? *
+              </label>
+
+              <select
+                id="section"
+                name="section"
+                required
+              >
+                <option value="">
+                  Please select
+                </option>
+
+                <option value="Beavers">
+                  Beavers
+                </option>
+
+                <option value="Cubs">
+                  Cubs
+                </option>
+
+                <option value="Scouts">
+                  Scouts
+                </option>
+
+                <option value="Not sure">
+                  Not sure
+                </option>
+              </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="message">
+                Anything else you'd like to tell us?
+              </label>
+
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Tell us anything that might be useful..."
+              ></textarea>
 
             </div>
 
 
             <button
               type="submit"
-              class="submit-button"
+              class="btn btn-primary"
             >
               Send enquiry
             </button>
 
+
+            <p
+              class="form-success"
+              id="formSuccess"
+              hidden
+            >
+              Thanks! Your enquiry has been sent.
+              We'll be in touch soon.
+            </p>
+
+
+            <p
+              class="form-error"
+              id="formError"
+              hidden
+            >
+              Sorry, something went wrong.
+              Please try again.
+            </p>
 
           </form>
 
         </div>
 
       </div>
-
     </section>
 
   </main>
@@ -1687,134 +1361,132 @@
   ========================= -->
 
   <footer>
+    <div class="container footer-inner">
 
-    <div class="container">
-
-      <div class="footer-grid">
-
-
-        <div>
-
-          <h3>
-            5th Wilmslow Scout Group
-          </h3>
-
-          <p>
-            Adventure, friendship and skills for life
-            in Wilmslow, Cheshire.
-          </p>
-
+      <div>
+        <div class="footer-brand">
+          5th Wilmslow Scout Group
         </div>
 
-
-        <div>
-
-          <h3>
-            Explore
-          </h3>
-
-          <p>
-            <a href="#groups">
-              Our Sections
-            </a>
-          </p>
-
-          <p>
-            <a href="#skills">
-              Skills for Life
-            </a>
-          </p>
-
-          <p>
-            <a href="#location">
-              Where We Meet
-            </a>
-          </p>
-
+        <div class="footer-copy">
+          Adventure • Skills • Friendship
         </div>
-
-
-        <div>
-
-          <h3>
-            Get involved
-          </h3>
-
-          <p>
-            <a href="#join">
-              Join Us
-            </a>
-          </p>
-
-          <p>
-            <a href="#faq">
-              FAQ
-            </a>
-          </p>
-
-        </div>
-
-
       </div>
 
-
-      <div class="footer-bottom">
-
+      <div class="footer-copy">
         © 5th Wilmslow Scout Group
-
       </div>
-
 
     </div>
-
   </footer>
 
 
   <!-- =========================
-       MOBILE MENU
+       JAVASCRIPT
   ========================= -->
 
   <script>
 
-    const menuButton =
-      document.getElementById("menuButton");
+    /* MOBILE MENU */
 
-    const mainNav =
-      document.getElementById("mainNav");
+    const menuButton = document.getElementById("menuButton");
+    const mainNav = document.getElementById("mainNav");
 
-
-    menuButton.addEventListener(
-      "click",
-      function () {
-
-        mainNav.classList.toggle("active");
-
-      }
-    );
+    menuButton.addEventListener("click", function () {
+      mainNav.classList.toggle("active");
+    });
 
 
-    const navLinks =
-      document.querySelectorAll("#mainNav a");
+    /* CLOSE MOBILE MENU WHEN LINK IS CLICKED */
+
+    document.querySelectorAll("#mainNav a").forEach(function (link) {
+
+      link.addEventListener("click", function () {
+        mainNav.classList.remove("active");
+      });
+
+    });
 
 
-    navLinks.forEach(
-      function (link) {
+    /* FAQ ACCORDION */
 
-        link.addEventListener(
-          "click",
-          function () {
+    document.querySelectorAll(".faq-question").forEach(function (question) {
 
-            mainNav.classList.remove("active");
+      question.addEventListener("click", function () {
 
+        const item = question.parentElement;
+
+        item.classList.toggle("active");
+
+        const symbol = question.querySelector("span");
+
+        if (item.classList.contains("active")) {
+          symbol.textContent = "−";
+        } else {
+          symbol.textContent = "+";
+        }
+
+      });
+
+    });
+
+
+    /* FORM SUBMISSION */
+
+    const joinForm = document.getElementById("joinForm");
+    const formSuccess = document.getElementById("formSuccess");
+    const formError = document.getElementById("formError");
+
+    joinForm.addEventListener("submit", async function (event) {
+
+      event.preventDefault();
+
+      formSuccess.hidden = true;
+      formError.hidden = true;
+
+      const submitButton =
+        joinForm.querySelector("button[type='submit']");
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+
+      try {
+
+        const response = await fetch(
+          joinForm.action,
+          {
+            method: "POST",
+            body: new FormData(joinForm),
+            headers: {
+              "Accept": "application/json"
+            }
           }
         );
 
+        if (response.ok) {
+
+          joinForm.reset();
+
+          formSuccess.hidden = false;
+
+        } else {
+
+          formError.hidden = false;
+
+        }
+
+      } catch (error) {
+
+        formError.hidden = false;
+
       }
-    );
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Send enquiry";
+
+    });
 
   </script>
 
-
 </body>
-
 </html>
