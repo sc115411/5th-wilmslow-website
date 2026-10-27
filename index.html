@@ -1,30 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>5th Wilmslow Scout Group</title>
 
-  <meta name="description" content="5th Wilmslow Scout Group - Beavers, Cubs and Scouts in Wilmslow, Cheshire. Adventure, friendship and skills for life.">
+  <meta
+    name="description"
+    content="5th Wilmslow Scout Group - Beavers, Cubs and Scouts in Wilmslow, Cheshire."
+  >
 
+  <!-- Nunito Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
+    /* =========================
+       COLOURS
+    ========================= */
+
     :root {
       --purple: #7413dc;
       --purple-dark: #4d0b91;
-      --teal: #087f81;
-      --teal-light: #dff7f5;
+
+      --beavers-blue: #0066b3;
+      --cubs-green: #00843d;
+      --scouts-teal: #009999;
+
       --yellow: #f9c74f;
+
       --cream: #f7f4ef;
       --black: #151515;
-      --grey: #666;
+      --grey: #666666;
       --white: #ffffff;
+
       --light-grey: #eeeeee;
     }
+
+
+    /* =========================
+       BASIC RESET
+    ========================= */
 
     * {
       box-sizing: border-box;
@@ -58,6 +82,7 @@
       margin: auto;
     }
 
+
     /* =========================
        HEADER
     ========================= */
@@ -66,15 +91,19 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: var(--white);
-      border-bottom: 1px solid #ddd;
+
+      background: white;
+
+      border-bottom: 1px solid #dddddd;
     }
 
     .nav {
       min-height: 72px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 25px;
     }
 
@@ -82,29 +111,33 @@
       display: flex;
       align-items: center;
       gap: 12px;
+
       font-weight: 900;
     }
 
-    /*
-      Official Scouts fleur-de-lis
-    */
+    /* Fleur-de-lis */
 
- .brand-mark {
-  width: 46px;
-  height: 46px;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-  flex-shrink: 0;
-}
+    .brand-mark {
+      width: 46px;
+      height: 46px;
 
-.brand-mark img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+      background: transparent;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 3px;
+
+      flex-shrink: 0;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
 
     .brand-text {
       line-height: 1.05;
@@ -112,21 +145,31 @@
 
     .brand-text strong {
       display: block;
+
       font-size: 16px;
+
       letter-spacing: .4px;
     }
 
     .brand-text span {
       display: block;
+
       font-size: 12px;
+
       color: var(--grey);
+
       margin-top: 3px;
+
       font-weight: 700;
     }
+
+
+    /* Navigation */
 
     nav {
       display: flex;
       align-items: center;
+
       gap: 28px;
     }
 
@@ -141,8 +184,10 @@
 
     .nav-button {
       background: var(--purple);
-      color: var(--white);
+      color: white;
+
       padding: 11px 18px;
+
       border-radius: 5px;
     }
 
@@ -153,14 +198,21 @@
 
     .menu-button {
       display: none;
+
       border: 0;
+
       background: var(--purple);
       color: white;
+
       padding: 9px 13px;
+
       border-radius: 5px;
+
       font-size: 20px;
+
       cursor: pointer;
     }
+
 
     /* =========================
        HERO
@@ -168,67 +220,97 @@
 
     .hero {
       background: var(--purple);
+
       color: white;
+
       padding: 95px 0 100px;
+
       position: relative;
+
       overflow: hidden;
     }
 
     .hero::after {
       content: "";
+
       position: absolute;
+
       width: 450px;
       height: 450px;
+
       border: 70px solid rgba(255,255,255,.08);
+
       border-radius: 50%;
+
       right: -180px;
       top: -180px;
     }
 
     .hero-content {
       position: relative;
+
       z-index: 1;
+
       max-width: 780px;
     }
 
     .eyebrow {
       text-transform: uppercase;
+
       font-weight: 900;
+
       letter-spacing: 1.5px;
+
       font-size: 14px;
+
       margin-bottom: 18px;
     }
 
     .hero h1 {
       font-size: clamp(44px, 7vw, 76px);
+
       line-height: .98;
+
       letter-spacing: -2px;
+
       margin-bottom: 25px;
+
+      font-weight: 900;
     }
 
     .hero p {
       max-width: 650px;
+
       font-size: 20px;
+
       line-height: 1.55;
+
       margin-bottom: 35px;
     }
 
     .hero-buttons {
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 14px;
     }
 
     .button {
       display: inline-block;
+
       padding: 14px 22px;
+
       border-radius: 5px;
+
       font-weight: 900;
+
       transition: .2s ease;
     }
 
     .button-primary {
       background: white;
+
       color: var(--purple);
     }
 
@@ -238,13 +320,16 @@
 
     .button-secondary {
       border: 2px solid white;
+
       color: white;
     }
 
     .button-secondary:hover {
       background: white;
+
       color: var(--purple);
     }
+
 
     /* =========================
        GENERAL SECTIONS
@@ -256,23 +341,31 @@
 
     .section-heading {
       max-width: 720px;
+
       margin-bottom: 45px;
     }
 
     .section-heading h2 {
       font-size: clamp(34px, 5vw, 52px);
+
       line-height: 1.05;
+
       margin-bottom: 14px;
+
       letter-spacing: -1px;
+
+      font-weight: 900;
     }
 
     .section-heading p {
       color: var(--grey);
+
       font-size: 18px;
     }
 
+
     /* =========================
-       SECTIONS CARDS
+       OUR SECTIONS
     ========================= */
 
     .groups {
@@ -281,65 +374,84 @@
 
     .group-grid {
       display: grid;
+
       grid-template-columns: repeat(3, 1fr);
+
       gap: 24px;
     }
 
     .group-card {
       background: white;
-      border: 1px solid #ddd;
-      border-top: 8px solid var(--purple);
-      padding: 28px;
+
+      border: 1px solid #dddddd;
+
+      padding: 30px;
+
       transition: .2s ease;
     }
 
     .group-card:hover {
       transform: translateY(-5px);
+
       box-shadow: 0 12px 30px rgba(0,0,0,.08);
     }
 
+
+    /* Section colours */
+
     .group-card.beavers {
-      border-top-color: #e23b3b;
+      border-top: 8px solid var(--beavers-blue);
     }
 
     .group-card.cubs {
-      border-top-color: #0072bc;
+      border-top: 8px solid var(--cubs-green);
     }
 
     .group-card.scouts {
-      border-top-color: #111;
+      border-top: 8px solid var(--scouts-teal);
     }
 
+
+    /* =========================
+       SECTION LOGOS
+    ========================= */
+
     .section-logo {
-      height: 90px;
+      height: 115px;
+
       display: flex;
+
       align-items: center;
-      justify-content: flex-start;
+
+      justify-content: center;
+
       margin-bottom: 20px;
     }
 
     .section-logo img {
-      max-height: 80px;
-      max-width: 180px;
+      width: auto;
+
+      height: 95px;
+
+      max-width: 190px;
+
       object-fit: contain;
     }
 
-    .logo-placeholder {
-      background: #f2f2f2;
-      border: 2px dashed #bbb;
-      padding: 18px 25px;
-      font-weight: 900;
-      color: #666;
-    }
 
     .group-card h3 {
       font-size: 29px;
+
       margin-bottom: 5px;
+
+      font-weight: 900;
     }
 
     .age {
       font-weight: 800;
+
       color: var(--grey);
+
       margin-bottom: 17px;
     }
 
@@ -349,11 +461,16 @@
 
     .meeting {
       background: var(--cream);
+
       padding: 14px 16px;
+
       margin-top: 20px;
+
       font-weight: 800;
+
       border-left: 5px solid var(--purple);
     }
+
 
     /* =========================
        SKILLS
@@ -361,41 +478,52 @@
 
     .skills {
       background: var(--black);
+
       color: white;
     }
 
     .skills .section-heading p {
-      color: #ccc;
+      color: #cccccc;
     }
 
     .skills-grid {
       display: grid;
+
       grid-template-columns: repeat(4, 1fr);
+
       gap: 18px;
     }
 
     .skill {
-      border: 1px solid #444;
+      border: 1px solid #444444;
+
       padding: 24px;
+
       min-height: 180px;
     }
 
     .skill-number {
       font-size: 42px;
+
       font-weight: 900;
+
       color: var(--yellow);
+
       line-height: 1;
+
       margin-bottom: 20px;
     }
 
     .skill h3 {
       font-size: 22px;
+
       margin-bottom: 8px;
     }
 
     .skill p {
-      color: #ccc;
+      color: #cccccc;
     }
+
 
     /* =========================
        YELLOW STRIP
@@ -403,34 +531,48 @@
 
     .yellow-strip {
       background: var(--yellow);
+
       padding: 42px 0;
     }
 
     .yellow-content {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 30px;
     }
 
     .yellow-content h2 {
       font-size: clamp(30px, 4vw, 44px);
+
       line-height: 1;
+
+      font-weight: 900;
     }
 
     .yellow-content p {
       margin-top: 8px;
+
       font-weight: 700;
     }
 
     .dark-button {
       background: var(--black);
+
       color: white;
+
       padding: 14px 22px;
+
       border-radius: 5px;
+
       font-weight: 900;
+
       white-space: nowrap;
     }
+
 
     /* =========================
        LOCATION
@@ -438,20 +580,28 @@
 
     .location-grid {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 35px;
+
       align-items: stretch;
     }
 
     .location-card {
-      background: var(--teal-light);
+      background: #dff7f5;
+
       padding: 35px;
-      border-left: 7px solid var(--teal);
+
+      border-left: 7px solid #087f81;
     }
 
     .location-card h3 {
       font-size: 30px;
+
       margin-bottom: 15px;
+
+      font-weight: 900;
     }
 
     .location-card p {
@@ -460,21 +610,32 @@
 
     .map-box {
       min-height: 330px;
-      background: #ddd;
+
+      background: #dddddd;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       text-align: center;
+
       padding: 30px;
     }
 
     .map-box a {
       background: var(--purple);
+
       color: white;
+
       padding: 14px 20px;
+
       border-radius: 5px;
+
       font-weight: 900;
     }
+
 
     /* =========================
        FAQ
@@ -490,15 +651,21 @@
 
     details {
       background: white;
-      border: 1px solid #ddd;
+
+      border: 1px solid #dddddd;
+
       margin-bottom: 12px;
     }
 
     summary {
       cursor: pointer;
+
       padding: 20px;
+
       font-weight: 900;
+
       font-size: 18px;
+
       list-style: none;
     }
 
@@ -508,7 +675,9 @@
 
     summary::after {
       content: "+";
+
       float: right;
+
       font-size: 24px;
     }
 
@@ -518,15 +687,18 @@
 
     details p {
       padding: 0 20px 20px;
+
       color: var(--grey);
     }
+
 
     /* =========================
        JOIN
     ========================= */
 
     .join {
-      background: var(--teal);
+      background: #087f81;
+
       color: white;
     }
 
@@ -536,20 +708,27 @@
 
     .join-box {
       background: white;
+
       color: var(--black);
+
       padding: 35px;
+
       max-width: 850px;
     }
 
     .form-grid {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 18px;
     }
 
     .form-group {
       display: flex;
+
       flex-direction: column;
+
       gap: 7px;
     }
 
@@ -564,27 +743,44 @@
     input,
     textarea,
     select {
-      font: inherit;
-      border: 1px solid #bbb;
+      font-family: "Nunito Sans", Arial, sans-serif;
+
+      font-size: 16px;
+
+      border: 1px solid #bbbbbb;
+
       padding: 13px;
+
       border-radius: 4px;
+
       width: 100%;
     }
 
     textarea {
       min-height: 130px;
+
       resize: vertical;
     }
 
     .submit-button {
       margin-top: 20px;
+
       border: 0;
+
       background: var(--purple);
+
       color: white;
+
       padding: 14px 22px;
+
       border-radius: 5px;
-      font: inherit;
+
+      font-family: "Nunito Sans", Arial, sans-serif;
+
+      font-size: 16px;
+
       font-weight: 900;
+
       cursor: pointer;
     }
 
@@ -592,19 +788,24 @@
       background: var(--purple-dark);
     }
 
+
     /* =========================
        FOOTER
     ========================= */
 
     footer {
-      background: #111;
+      background: #111111;
+
       color: white;
+
       padding: 45px 0;
     }
 
     .footer-grid {
       display: grid;
+
       grid-template-columns: 2fr 1fr 1fr;
+
       gap: 40px;
     }
 
@@ -614,7 +815,7 @@
 
     footer p,
     footer a {
-      color: #bbb;
+      color: #bbbbbb;
     }
 
     footer a:hover {
@@ -622,12 +823,17 @@
     }
 
     .footer-bottom {
-      border-top: 1px solid #333;
+      border-top: 1px solid #333333;
+
       margin-top: 35px;
+
       padding-top: 20px;
-      color: #888;
+
+      color: #888888;
+
       font-size: 14px;
     }
+
 
     /* =========================
        MOBILE
@@ -637,15 +843,24 @@
 
       nav {
         display: none;
+
         position: absolute;
+
         left: 0;
         right: 0;
+
         top: 72px;
+
         background: white;
-        border-bottom: 1px solid #ddd;
+
+        border-bottom: 1px solid #dddddd;
+
         padding: 20px;
+
         flex-direction: column;
+
         align-items: stretch;
+
         gap: 5px;
       }
 
@@ -669,6 +884,7 @@
 
       .yellow-content {
         flex-direction: column;
+
         align-items: flex-start;
       }
 
@@ -676,6 +892,7 @@
         grid-template-columns: 1fr;
       }
     }
+
 
     @media (max-width: 600px) {
 
@@ -706,54 +923,97 @@
       .brand-text span {
         font-size: 10px;
       }
+
+      .section-logo {
+        height: 100px;
+      }
+
+      .section-logo img {
+        height: 85px;
+      }
     }
+
   </style>
 </head>
 
+
 <body>
+
 
   <!-- =========================
        HEADER
-  ========================== -->
+  ========================= -->
 
   <header>
+
     <div class="container nav">
 
       <a href="#" class="brand">
 
         <div class="brand-mark">
+
           <img
-            src="scouts-fleur-de-lis-logo.png"
+            src="scouts-fleur-de-lis.png"
             alt="Scouts"
           >
+
         </div>
 
         <div class="brand-text">
+
           <strong>5TH WILMSLOW</strong>
+
           <span>SCOUT GROUP</span>
+
         </div>
 
       </a>
 
-      <button class="menu-button" id="menuButton" aria-label="Open menu">
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open menu"
+      >
         ☰
       </button>
 
+
       <nav id="mainNav">
-        <a href="#groups">Our Sections</a>
-        <a href="#skills">Skills</a>
-        <a href="#location">Where We Meet</a>
-        <a href="#faq">FAQ</a>
-        <a href="#join" class="nav-button">Join Us</a>
+
+        <a href="#groups">
+          Our Sections
+        </a>
+
+        <a href="#skills">
+          Skills
+        </a>
+
+        <a href="#location">
+          Where We Meet
+        </a>
+
+        <a href="#faq">
+          FAQ
+        </a>
+
+        <a
+          href="#join"
+          class="nav-button"
+        >
+          Join Us
+        </a>
+
       </nav>
 
     </div>
+
   </header>
 
 
   <!-- =========================
        HERO
-  ========================== -->
+  ========================= -->
 
   <main>
 
@@ -776,13 +1036,21 @@
         </p>
 
         <div class="hero-buttons">
-          <a href="#join" class="button button-primary">
+
+          <a
+            href="#join"
+            class="button button-primary"
+          >
             Join the group
           </a>
 
-          <a href="#groups" class="button button-secondary">
+          <a
+            href="#groups"
+            class="button button-secondary"
+          >
             Find your section
           </a>
+
         </div>
 
       </div>
@@ -792,23 +1060,31 @@
 
     <!-- =========================
          OUR SECTIONS
-    ========================== -->
+    ========================= -->
 
-    <section class="groups" id="groups">
+    <section
+      class="groups"
+      id="groups"
+    >
 
       <div class="container">
 
         <div class="section-heading">
-          <h2>Something for everyone.</h2>
+
+          <h2>
+            Something for everyone.
+          </h2>
 
           <p>
             From first adventures to bigger challenges,
             there's a place for young people at 5th Wilmslow.
           </p>
+
         </div>
 
 
         <div class="group-grid">
+
 
           <!-- BEAVERS -->
 
@@ -816,16 +1092,16 @@
 
             <div class="section-logo">
 
-              <!-- Replace this placeholder with the official
-                   Scouts Beavers artwork when you have it. -->
-
-              <div class="logo-placeholder">
-                BEAVERS
-              </div>
+              <img
+                src="beavers.png"
+                alt="Beavers"
+              >
 
             </div>
 
-            <h3>Beavers</h3>
+            <h3>
+              Beavers
+            </h3>
 
             <div class="age">
               Ages 6–8
@@ -837,8 +1113,11 @@
             </p>
 
             <div class="meeting">
+
               Friday<br>
+
               Time TBC
+
             </div>
 
           </article>
@@ -850,16 +1129,16 @@
 
             <div class="section-logo">
 
-              <!-- Replace this placeholder with the official
-                   Scouts Cubs artwork when you have it. -->
-
-              <div class="logo-placeholder">
-                CUBS
-              </div>
+              <img
+                src="cubs.png"
+                alt="Cubs"
+              >
 
             </div>
 
-            <h3>Cubs</h3>
+            <h3>
+              Cubs
+            </h3>
 
             <div class="age">
               Ages 8–10½
@@ -871,8 +1150,11 @@
             </p>
 
             <div class="meeting">
+
               Monday<br>
+
               6:30pm–8:00pm
+
             </div>
 
           </article>
@@ -884,16 +1166,16 @@
 
             <div class="section-logo">
 
-              <!-- Replace this placeholder with the official
-                   Scouts Scouts artwork when you have it. -->
-
-              <div class="logo-placeholder">
-                SCOUTS
-              </div>
+              <img
+                src="scouts.png"
+                alt="Scouts"
+              >
 
             </div>
 
-            <h3>Scouts</h3>
+            <h3>
+              Scouts
+            </h3>
 
             <div class="age">
               Ages 10½–14
@@ -905,11 +1187,15 @@
             </p>
 
             <div class="meeting">
+
               Monday<br>
+
               6:30pm–8:00pm
+
             </div>
 
           </article>
+
 
         </div>
 
@@ -920,56 +1206,100 @@
 
     <!-- =========================
          SKILLS
-    ========================== -->
+    ========================= -->
 
-    <section class="skills" id="skills">
+    <section
+      class="skills"
+      id="skills"
+    >
 
       <div class="container">
 
         <div class="section-heading">
-          <h2>Skills for life.</h2>
+
+          <h2>
+            Skills for life.
+          </h2>
 
           <p>
             Scouts isn't just about badges. It's about giving
             young people the confidence and skills they need
             for whatever comes next.
           </p>
+
         </div>
 
 
         <div class="skills-grid">
 
+
           <div class="skill">
-            <div class="skill-number">01</div>
-            <h3>Confidence</h3>
+
+            <div class="skill-number">
+              01
+            </div>
+
+            <h3>
+              Confidence
+            </h3>
+
             <p>
               Try new things and discover what you can do.
             </p>
+
           </div>
 
+
           <div class="skill">
-            <div class="skill-number">02</div>
-            <h3>Teamwork</h3>
+
+            <div class="skill-number">
+              02
+            </div>
+
+            <h3>
+              Teamwork
+            </h3>
+
             <p>
               Work together, make friends and support others.
             </p>
+
           </div>
 
+
           <div class="skill">
-            <div class="skill-number">03</div>
-            <h3>Adventure</h3>
+
+            <div class="skill-number">
+              03
+            </div>
+
+            <h3>
+              Adventure
+            </h3>
+
             <p>
               Get outdoors and experience something different.
             </p>
+
           </div>
 
+
           <div class="skill">
-            <div class="skill-number">04</div>
-            <h3>Independence</h3>
+
+            <div class="skill-number">
+              04
+            </div>
+
+            <h3>
+              Independence
+            </h3>
+
             <p>
               Learn practical skills and take on new challenges.
             </p>
+
           </div>
+
 
         </div>
 
@@ -980,21 +1310,28 @@
 
     <!-- =========================
          YELLOW CTA
-    ========================== -->
+    ========================= -->
 
     <section class="yellow-strip">
 
       <div class="container yellow-content">
 
         <div>
-          <h2>Ready for an adventure?</h2>
+
+          <h2>
+            Ready for an adventure?
+          </h2>
 
           <p>
             Find out more about joining 5th Wilmslow Scout Group.
           </p>
+
         </div>
 
-        <a href="#join" class="dark-button">
+        <a
+          href="#join"
+          class="dark-button"
+        >
           Get in touch
         </a>
 
@@ -1005,7 +1342,7 @@
 
     <!-- =========================
          LOCATION
-    ========================== -->
+    ========================= -->
 
     <section id="location">
 
@@ -1013,7 +1350,9 @@
 
         <div class="section-heading">
 
-          <h2>Where we meet.</h2>
+          <h2>
+            Where we meet.
+          </h2>
 
           <p>
             We're based in Wilmslow and welcome young people
@@ -1025,9 +1364,12 @@
 
         <div class="location-grid">
 
+
           <div class="location-card">
 
-            <h3>Wilmslow Methodist Church</h3>
+            <h3>
+              Wilmslow Methodist Church
+            </h3>
 
             <p>
               Wilmslow, Cheshire
@@ -1043,7 +1385,7 @@
               target="_blank"
               rel="noopener"
               class="button"
-              style="background: var(--teal); color: white;"
+              style="background:#087f81;color:white;"
             >
               Open in Google Maps
             </a>
@@ -1063,6 +1405,7 @@
 
           </div>
 
+
         </div>
 
       </div>
@@ -1072,15 +1415,20 @@
 
     <!-- =========================
          FAQ
-    ========================== -->
+    ========================= -->
 
-    <section class="faq" id="faq">
+    <section
+      class="faq"
+      id="faq"
+    >
 
       <div class="container">
 
         <div class="section-heading">
 
-          <h2>Frequently asked questions.</h2>
+          <h2>
+            Frequently asked questions.
+          </h2>
 
           <p>
             A few things parents often want to know before
@@ -1092,7 +1440,9 @@
 
         <div class="faq-list">
 
+
           <details>
+
             <summary>
               How do I join?
             </summary>
@@ -1102,10 +1452,12 @@
               to you with information about the appropriate
               section and the next steps.
             </p>
+
           </details>
 
 
           <details>
+
             <summary>
               Do I need any previous experience?
             </summary>
@@ -1115,10 +1467,12 @@
               skills and having adventures. You don't need to
               have any previous experience.
             </p>
+
           </details>
 
 
           <details>
+
             <summary>
               What should I bring?
             </summary>
@@ -1128,10 +1482,12 @@
               meeting. For most activities, comfortable
               clothing and suitable footwear are a good start.
             </p>
+
           </details>
 
 
           <details>
+
             <summary>
               Can parents help?
             </summary>
@@ -1141,7 +1497,9 @@
               Scouts. If you'd like to help, mention it when
               you contact us.
             </p>
+
           </details>
+
 
         </div>
 
@@ -1152,15 +1510,20 @@
 
     <!-- =========================
          JOIN
-    ========================== -->
+    ========================= -->
 
-    <section class="join" id="join">
+    <section
+      class="join"
+      id="join"
+    >
 
       <div class="container">
 
         <div class="section-heading">
 
-          <h2>Join 5th Wilmslow.</h2>
+          <h2>
+            Join 5th Wilmslow.
+          </h2>
 
           <p>
             Interested in joining? Send us an enquiry and
@@ -1178,7 +1541,9 @@
             enctype="text/plain"
           >
 
+
             <div class="form-grid">
+
 
               <div class="form-group">
 
@@ -1236,7 +1601,10 @@
                   Interested in
                 </label>
 
-                <select id="section" name="Section">
+                <select
+                  id="section"
+                  name="Section"
+                >
 
                   <option value="Not sure">
                     Not sure
@@ -1289,6 +1657,7 @@
 
               </div>
 
+
             </div>
 
 
@@ -1298,6 +1667,7 @@
             >
               Send enquiry
             </button>
+
 
           </form>
 
@@ -1312,7 +1682,7 @@
 
   <!-- =========================
        FOOTER
-  ========================== -->
+  ========================= -->
 
   <footer>
 
@@ -1320,9 +1690,12 @@
 
       <div class="footer-grid">
 
+
         <div>
 
-          <h3>5th Wilmslow Scout Group</h3>
+          <h3>
+            5th Wilmslow Scout Group
+          </h3>
 
           <p>
             Adventure, friendship and skills for life
@@ -1334,18 +1707,26 @@
 
         <div>
 
-          <h3>Explore</h3>
+          <h3>
+            Explore
+          </h3>
 
           <p>
-            <a href="#groups">Our Sections</a>
+            <a href="#groups">
+              Our Sections
+            </a>
           </p>
 
           <p>
-            <a href="#skills">Skills for Life</a>
+            <a href="#skills">
+              Skills for Life
+            </a>
           </p>
 
           <p>
-            <a href="#location">Where We Meet</a>
+            <a href="#location">
+              Where We Meet
+            </a>
           </p>
 
         </div>
@@ -1353,17 +1734,24 @@
 
         <div>
 
-          <h3>Get involved</h3>
+          <h3>
+            Get involved
+          </h3>
 
           <p>
-            <a href="#join">Join Us</a>
+            <a href="#join">
+              Join Us
+            </a>
           </p>
 
           <p>
-            <a href="#faq">FAQ</a>
+            <a href="#faq">
+              FAQ
+            </a>
           </p>
 
         </div>
+
 
       </div>
 
@@ -1374,36 +1762,57 @@
 
       </div>
 
+
     </div>
 
   </footer>
 
 
   <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+       MOBILE MENU
+  ========================= -->
 
   <script>
 
-    const menuButton = document.getElementById("menuButton");
-    const mainNav = document.getElementById("mainNav");
+    const menuButton =
+      document.getElementById("menuButton");
 
-    menuButton.addEventListener("click", function() {
-      mainNav.classList.toggle("active");
-    });
+    const mainNav =
+      document.getElementById("mainNav");
 
 
-    const navLinks = document.querySelectorAll("#mainNav a");
+    menuButton.addEventListener(
+      "click",
+      function () {
 
-    navLinks.forEach(function(link) {
+        mainNav.classList.toggle("active");
 
-      link.addEventListener("click", function() {
-        mainNav.classList.remove("active");
-      });
+      }
+    );
 
-    });
+
+    const navLinks =
+      document.querySelectorAll("#mainNav a");
+
+
+    navLinks.forEach(
+      function (link) {
+
+        link.addEventListener(
+          "click",
+          function () {
+
+            mainNav.classList.remove("active");
+
+          }
+        );
+
+      }
+    );
 
   </script>
 
+
 </body>
+
 </html>
