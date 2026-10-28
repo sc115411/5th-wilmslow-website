@@ -1894,48 +1894,45 @@
     const formMessage =
       document.getElementById("formMessage");
 
-
     form.addEventListener("submit", async function(event) {
 
       event.preventDefault();
 
-      const data =
-        new FormData(form);
-
       formMessage.textContent =
         "Sending...";
 
+      const data =
+        new FormData(form);
+
+      const enquiry = {
+        parent_name: String(data.get("name") || "").trim(),
+        email: String(data.get("email") || "").trim(),
+        enquiry: String(data.get("enquiry") || "").trim(),
+        child_name: String(data.get("child") || "").trim() || null,
+        child_age: data.get("age") ? Number(data.get("age")) : null,
+        section: String(data.get("section") || "").trim() || null,
+        message: String(data.get("message") || "").trim() || null
+      };
 
       try {
 
-        const response =
-          await fetch(
-            "https://formspree.io/f/xvkkayzp",
-            {
-              method: "POST",
-              body: data,
-              headers: {
-                "Accept": "application/json"
-              }
-            }
-          );
+        const { error } =
+          await db
+            .from("join_enquiries")
+            .insert(enquiry);
 
-
-        if (response.ok) {
-
-          formMessage.textContent =
-            "Thanks! Your enquiry has been sent.";
-
-          form.reset();
-
-        } else {
-
-          formMessage.textContent =
-            "Sorry, something went wrong. Please try again.";
-
+        if (error) {
+          throw error;
         }
 
+        formMessage.textContent =
+          "Thanks! Your enquiry has been sent.";
+
+        form.reset();
+
       } catch (error) {
+
+        console.error(error);
 
         formMessage.textContent =
           "Sorry, something went wrong. Please try again.";
