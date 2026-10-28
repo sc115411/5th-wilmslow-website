@@ -71,7 +71,7 @@ footer{background:var(--black);color:white;padding:35px 0}.footer-links{display:
 const SUPABASE_URL="https://fmizontvhrytzalkndur.supabase.co";
 const SUPABASE_KEY="sb_publishable_chkN-SukwxHTI1-yxE6kDw_o9TfgE1Q";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-const LOGIN_EMAILS={beavers:"beavers@5thwilmslow.scouts",cubs:"cubs@5thwilmslow.scouts",scouts:"scouts@5thwilmslow.scouts",admin:"admin@5thwilmslow.scouts"};
+const LOGIN_EMAILS={beavers:"beavers@5thwilmslow.co",cubs:"cubs@5thwilmslow.co",scouts:"scouts@5thwilmslow.co",admin:"admin@5thwilmslow.co"};
 let currentUser=null,currentProfile=null,currentArticle=null;
 
 function msg(id,text,error=false){const el=document.getElementById(id);el.textContent=text;el.className="message"+(error?" error":"")}
