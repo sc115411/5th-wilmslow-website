@@ -21,7 +21,7 @@ footer{background:var(--black);color:white;padding:35px 0}.footer-links{display:
 </head>
 <body>
 <div class="scout-links-banner"><div class="container scout-links-inner"><a href="https://www.akdistrictscouts.org.uk/" target="_blank" rel="noopener">District Website</a><span>|</span><a href="https://www.cheshirescouts.org.uk/" target="_blank" rel="noopener">County Website</a><span>|</span><a href="https://www.scouts.org.uk/" target="_blank" rel="noopener">UK Scouts Website</a></div></div>
-<header><div class="container nav"><a href="index.html" class="brand"><div class="brand-mark"><img src="scouts-fleur-de-lis-logo.png" alt="Scouts"></div><div class="brand-text"><strong>5TH WILMSLOW</strong><span>STAFF AREA</span></div></a><nav class="nav-links"><a href="index.html">Public site</a><a href="news.html">News</a></nav></div></header>
+<header><div class="container nav"><a href="index.html" class="brand"><div class="brand-mark"><img src="scouts-fleur-de-lis-logo.png" alt="Scouts"></div><div class="brand-text"><strong>5TH WILMSLOW</strong><span>SCOUT GROUP</span></div></a><button class="menu-button" onclick="toggleMenu()" aria-label="Open menu">☰</button><nav class="nav-links" id="navLinks"><a href="index.html#about">About us</a><a href="index.html#sections">Sections</a><a href="what-we-do.html">What we do</a><a href="news.html">News</a><a href="index.html#gallery">Gallery</a><a href="index.html#volunteers">Volunteering</a><a href="index.html#contact">Contact</a><a href="index.html#join" class="join-button">JOIN TODAY</a></nav></div></header>
 <main>
 <div id="loginPanel" class="panel auth-box">
   <div class="eyebrow" style="color:var(--purple);font-weight:900;letter-spacing:2px;text-transform:uppercase">Staff area</div>
@@ -68,6 +68,8 @@ footer{background:var(--black);color:white;padding:35px 0}.footer-links{display:
 </main>
 <footer><div class="container"><div class="footer-links"><a href="index.html">Public site</a><a href="news.html">News</a><a href="mailto:iandkennedy1@gmail.com">Contact group</a></div></div></footer>
 <script>
+function toggleMenu(){document.getElementById("navLinks").classList.toggle("active")}
+
 const SUPABASE_URL="https://fmizontvhrytzalkndur.supabase.co";
 const SUPABASE_KEY="sb_publishable_chkN-SukwxHTI1-yxE6kDw_o9TfgE1Q";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
