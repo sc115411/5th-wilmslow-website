@@ -1,1 +1,251 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff Login | 5th Wilmslow Scout Group</title>
+<meta name="description" content="Staff news management for 5th Wilmslow Scout Group.">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0"></script>
+<style>
+:root{--purple:#7413dc;--purple-dark:#4d0b91;--teal:#00a794;--yellow:#ffe627;--cream:#f7f4ef;--black:#151515;--grey:#666;--red:#c62828;--max-width:1200px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Nunito Sans",Arial,sans-serif;color:var(--black);line-height:1.6;background:var(--cream)}a{color:inherit;text-decoration:none}.container{width:min(100% - 40px,var(--max-width));margin:auto}
+.scout-links-banner{background:var(--black);color:white;padding:10px 0;font-size:13px;font-weight:800}.scout-links-inner{display:flex;justify-content:flex-end;gap:24px}.scout-links-banner a:hover{color:var(--yellow)}
+header{background:white;position:sticky;top:0;z-index:1000}.nav{height:82px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:48px;height:48px;padding:4px}.brand-mark img{width:100%;height:100%;object-fit:contain}.brand-text{display:flex;flex-direction:column;line-height:1.05}.brand-text strong{font-size:17px;font-weight:900}.brand-text span{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--purple)}.nav-links{display:flex;gap:26px;font-weight:700}.nav-links a:hover{color:var(--purple)}.join-button{background:var(--purple);color:white!important;padding:12px 18px;font-weight:900}.join-button:hover{background:var(--purple-dark)}.menu-button{display:none;border:0;background:none;font-size:28px;cursor:pointer}
+main{padding:70px 0}.panel{background:white;padding:40px;box-shadow:0 8px 30px rgba(0,0,0,.06);margin-bottom:30px}.panel h1{font-size:48px;line-height:1;margin-bottom:12px}.panel h2{font-size:30px;margin-bottom:20px}.muted{color:var(--grey)}.hidden{display:none!important}
+.auth-box{max-width:520px;margin:auto}.form-row{margin-bottom:18px}label{font-weight:900;display:block;margin-bottom:6px}input,select,textarea{width:100%;padding:13px 15px;border:1px solid #ccc;border-radius:2px;font:inherit}textarea{min-height:180px;resize:vertical}.button{display:inline-block;border:0;background:var(--purple);color:white;padding:13px 22px;font:inherit;font-weight:900;cursor:pointer}.button:hover{background:var(--purple-dark)}.button.secondary{background:var(--black)}.button.danger{background:var(--red)}.message{margin-top:15px;font-weight:800}.message.error{color:var(--red)}.message.success{color:#187a3d}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.article-list{display:grid;gap:15px}.article-row{border:1px solid #ddd;padding:20px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.article-row h3{font-size:22px}.status{display:inline-block;padding:4px 8px;font-size:12px;font-weight:900;text-transform:uppercase;background:#eee}.status.published{background:#d9f4e2;color:#176c38}.status.draft{background:#eee}.meta{color:var(--grey);font-size:14px;margin-top:4px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}.check{display:flex;align-items:center;gap:10px}.check input{width:auto}.preview{max-width:260px;margin-top:10px}.admin-note{background:#fff6c7;padding:15px;margin-bottom:20px;font-weight:700}.dashboard-nav{background:var(--black);color:white;position:sticky;top:82px;z-index:900}.dashboard-nav-inner{display:flex;align-items:center;gap:8px;overflow-x:auto;padding:10px 0}.dashboard-nav a,.dashboard-nav button{border:0;background:transparent;color:white;padding:10px 16px;font:inherit;font-weight:900;cursor:pointer;white-space:nowrap}.dashboard-nav a:hover,.dashboard-nav button:hover{background:var(--purple)}.dashboard-nav .active{background:var(--purple)}
+footer{background:var(--black);color:white;padding:35px 0}.footer-links{display:flex;gap:20px;flex-wrap:wrap;color:#ccc}
+@media(max-width:800px){.menu-button{display:block}.nav-links{display:none}.nav-links.active{display:flex;position:absolute;top:82px;left:0;right:0;background:white;flex-direction:column;padding:20px;gap:16px;box-shadow:0 8px 20px rgba(0,0,0,.1)}.panel{padding:28px 22px}.form-grid{grid-template-columns:1fr}.article-row{grid-template-columns:1fr}.enquiry-details{grid-template-columns:1fr}.panel h1{font-size:40px}.scout-links-inner{justify-content:center;gap:10px;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="scout-links-banner"><div class="container scout-links-inner"><a href="https://www.akdistrictscouts.org.uk/" target="_blank" rel="noopener">District Website</a><span>|</span><a href="https://www.cheshirescouts.org.uk/" target="_blank" rel="noopener">County Website</a><span>|</span><a href="https://www.scouts.org.uk/" target="_blank" rel="noopener">UK Scouts Website</a></div></div>
+<header><div class="container nav"><a href="index.html" class="brand"><div class="brand-mark"><img src="scouts-fleur-de-lis-logo.png" alt="Scouts"></div><div class="brand-text"><strong>5TH WILMSLOW</strong><span>SCOUT GROUP</span></div></a><button class="menu-button" onclick="toggleMenu()" aria-label="Open menu">☰</button><nav class="nav-links" id="navLinks"><a href="index.html#about">About us</a><a href="index.html#sections">Sections</a><a href="what-we-do.html">What we do</a><a href="news.html">News</a><a href="index.html#gallery">Gallery</a><a href="index.html#volunteers">Volunteering</a><a href="index.html#contact">Contact</a><a href="index.html#join" class="join-button">JOIN TODAY</a></nav></div></header>
+<main>
+<div id="loginPanel" class="panel auth-box">
+  <div class="eyebrow" style="color:var(--purple);font-weight:900;letter-spacing:2px;text-transform:uppercase">Staff area</div>
+  <h1>Staff login</h1>
+  <p class="muted" style="margin-bottom:25px">Sign in to create, edit and publish news for your section.</p>
+  <form id="loginForm">
+    <div class="form-row"><label for="username">Username</label><input id="username" autocomplete="username" required></div>
+    <div class="form-row"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+    <button class="button" type="submit">SIGN IN</button>
+    <div id="loginMessage" class="message"></div>
+  </form>
+</div>
+
+<div id="dashboard" class="hidden">
+  <div class="panel">
+    <div class="toolbar"><div><div class="eyebrow" style="color:var(--purple);font-weight:900;letter-spacing:2px;text-transform:uppercase">News management</div><h1>Staff dashboard</h1><p id="welcome" class="muted"></p></div><button class="button secondary" onclick="signOut()">SIGN OUT</button></div>
+  </div>
+
+  <div class="panel">
+    <div class="toolbar"><h2>Your articles</h2><button class="button" onclick="newArticle()">+ NEW ARTICLE</button></div>
+    <div id="articleList" class="article-list" style="margin-top:20px"></div>
+  </div>
+
+  <div class="panel">
+    <div class="toolbar">
+      <div>
+        <h2>Joining enquiries</h2>
+        <p class="muted">Responses submitted through the public JOIN TODAY form appear here.</p>
+      </div>
+      <button class="button secondary" type="button" onclick="loadEnquiries()">REFRESH</button>
+    </div>
+    <div id="enquiryList" class="enquiry-list" style="margin-top:20px"></div>
+  </div>
+
+  <div id="errorCodesPanel" class="panel hidden">
+    <div class="toolbar"><div><h2>Error codes</h2><p class="muted">Admin-only reference codes for diagnosing website problems.</p></div><button class="button secondary" type="button" onclick="loadErrorCodes()">REFRESH</button></div>
+    <form id="errorCodeForm" class="error-code-form">
+      <div class="form-row"><label for="errorCode">Code</label><input id="errorCode" maxlength="20" placeholder="E1009" required></div>
+      <div class="form-row"><label for="errorMeaning">What it means</label><input id="errorMeaning" maxlength="180" required></div>
+      <div class="form-row"><label for="errorSeverity">Severity</label><select id="errorSeverity"><option>info</option><option>warning</option><option selected>error</option><option>critical</option></select></div>
+      <div class="form-row" style="grid-column:1/-1"><label for="errorDetails">Details</label><textarea id="errorDetails" maxlength="500" style="min-height:90px" placeholder="Explain what caused the error and what staff should check."></textarea></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;grid-column:1/-1"><button class="button" type="submit">ADD ERROR CODE</button><button class="button secondary hidden" id="cancelErrorEdit" type="button" onclick="cancelErrorEdit()">CANCEL EDIT</button></div>
+    </form>
+    <div id="errorCodeList" class="error-code-list" style="margin-top:20px"></div>
+  </div>
+
+  <div id="editorPanel" class="panel hidden">
+    <h2 id="editorTitle">New article</h2>
+    <p class="muted" style="margin-bottom:25px">Add the article details below. You can save it as a draft and publish it when you're ready.</p>
+    <div id="adminNote" class="admin-note hidden">You are signed in as the administrator. You can edit any article and delete articles. Deletion is permanently protected by a second admin password check.</div>
+    <div id="adminTools" class="panel hidden" style="margin-top:20px"><h2>Admin tools</h2><p class="muted">Admin-only tools are available from the dashboard navigation above.</p></div>
+    <form id="articleForm">
+      <input type="hidden" id="articleId">
+      <div class="form-grid">
+        <div class="form-row full"><label for="title">Title</label><input id="title" maxlength="180" required></div>
+        <div class="form-row"><label for="section">Section</label><select id="section"><option value="beavers">Beavers</option><option value="cubs">Cubs</option><option value="scouts">Scouts</option><option value="group">Group</option></select></div>
+        <div class="form-row"><label for="publishedAt">Publication date & time</label><input id="publishedAt" type="datetime-local"></div>
+        <div class="form-row full"><label for="excerpt">Short description</label><textarea id="excerpt" maxlength="500" style="min-height:100px"></textarea></div>
+        <div class="form-row full"><label for="body">Article</label><textarea id="body" required placeholder="Write the article here..."></textarea></div>
+        <div class="form-row full"><label for="image">Article image</label><input id="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif"><img id="preview" class="preview hidden" alt="Image preview"></div>
+        <div class="form-row full check"><input id="published" type="checkbox"><label for="published" style="margin:0">Publish this article</label></div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px"><button class="button" type="submit">SAVE ARTICLE</button><button class="button secondary" type="button" onclick="cancelEdit()">CANCEL</button><button id="deleteButton" class="button danger hidden" type="button" onclick="deleteCurrentArticle()">DELETE ARTICLE</button></div>
+      <div id="editorMessage" class="message"></div>
+    </form>
+  </div>
+</div>
+</main>
+<footer><div class="container"><div class="footer-links"><a href="index.html">Public site</a><a href="news.html">News</a><a href="mailto:iandkennedy1@gmail.com">Contact group</a></div></div></footer>
+<script>
+function toggleMenu(){document.getElementById("navLinks").classList.toggle("active")}
+
+const SUPABASE_URL="https://fmizontvhrytzalkndur.supabase.co";
+const SUPABASE_KEY="sb_publishable_chkN-SukwxHTI1-yxE6kDw_o9TfgE1Q";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const LOGIN_EMAILS={beavers:"beavers@5thwilmslow.co",cubs:"cubs@5thwilmslow.co",scouts:"scouts@5thwilmslow.co",admin:"admin@5thwilmslow.co"};
+let currentUser=null,currentProfile=null,currentArticle=null;
+
+function msg(id,text,error=false){const el=document.getElementById(id);el.textContent=text;el.className="message"+(error?" error":"")}
+function slugify(s){return s.toLowerCase().trim().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").slice(0,200)+"-"+Date.now().toString(36)}
+function escapeHtml(v){const d=document.createElement("div");d.textContent=v||"";return d.innerHTML}
+function sectionName(s){return s==="group"?"Group":s.charAt(0).toUpperCase()+s.slice(1)}
+async function getProfile(){
+ const {data,error}=await db.from("staff_profiles").select("user_id,username,role").eq("user_id",currentUser.id).single();
+ if(error||!data)return null;return data;
+}
+async function login(e){
+ e.preventDefault();msg("loginMessage","Signing in...");
+ const username=document.getElementById("username").value.trim().toLowerCase();
+ const email=LOGIN_EMAILS[username];
+ if(!email){msg("loginMessage","That username is not recognised.",true);return}
+ const password=document.getElementById("password").value;
+ const {data,error}=await db.auth.signInWithPassword({email,password});
+ if(error){msg("loginMessage",error.message,true);return}
+ currentUser=data.user;currentProfile=await getProfile();
+ if(!currentProfile){await db.auth.signOut();msg("loginMessage","This account has not been set up as staff yet. Please contact the site administrator.",true);return}
+ showDashboard();
+}
+function showDashboard(){
+ document.getElementById("loginPanel").classList.add("hidden");document.getElementById("dashboard").classList.remove("hidden");
+ document.getElementById("welcome").textContent="Signed in as "+currentProfile.username+" · "+sectionName(currentProfile.role);
+ if(currentProfile.role==="admin"){document.getElementById("adminNote").classList.remove("hidden");document.getElementById("adminTools").classList.remove("hidden");document.getElementById("errorCodesNav").classList.remove("hidden");}
+ loadArticles();
+ loadEnquiries();
+}
+async function loadArticles(){
+ const list=document.getElementById("articleList");list.innerHTML="<p class='muted'>Loading...</p>";
+ let query=db.from("news_articles").select("id,title,section,excerpt,is_published,published_at,updated_at,author_id").order("updated_at",{ascending:false});
+ if(currentProfile.role!=="admin")query=query.eq("author_id",currentUser.id);
+ const {data,error}=await query;
+ if(error){list.innerHTML="<p>Could not load articles.</p>";return}
+ if(!data.length){list.innerHTML="<p class='muted'>No articles yet. Create your first one.</p>";return}
+ list.innerHTML=data.map(a=>'<div class="article-row"><div><h3>'+escapeHtml(a.title)+'</h3><div class="meta">'+sectionName(a.section)+' · '+(a.is_published?'<span class="status published">Published</span>':'<span class="status draft">Draft</span>')+(a.published_at?' · '+new Date(a.published_at).toLocaleDateString("en-GB"):"")+'</div></div><button class="button" onclick="editArticle('+JSON.stringify(a.id)+')">EDIT</button></div>').join("");
+}
+async function loadEnquiries(){
+ const list=document.getElementById("enquiryList");
+ list.innerHTML="<p class='muted'>Loading enquiries...</p>";
+ const {data,error}=await db.from("join_enquiries").select("id,parent_name,email,enquiry,child_name,child_age,section,message,status,created_at").order("created_at",{ascending:false});
+ if(error){list.innerHTML="<p>Could not load enquiries.</p>";return}
+ if(!data.length){list.innerHTML="<p class='muted'>No joining enquiries yet.</p>";return}
+ list.innerHTML=data.map(q=>{
+   const status=q.status||"new";
+   const date=new Date(q.created_at).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short"});
+   const message=q.message?'<div class="enquiry-message">'+escapeHtml(q.message)+'</div>':"";
+   const child=q.child_name?escapeHtml(q.child_name)+(q.child_age?" (age "+escapeHtml(String(q.child_age))+")":""):"Not provided";
+   const section=q.section?escapeHtml(q.section):"Not specified";
+   return '<div class="enquiry-row"><div class="enquiry-top"><div><h3>'+escapeHtml(q.parent_name)+'</h3><div class="meta">'+escapeHtml(q.enquiry)+' · '+date+'</div></div><span class="enquiry-status '+status+'">'+escapeHtml(status)+'</span></div><div class="enquiry-details"><div><strong>Email:</strong> <a href="mailto:'+encodeURIComponent(q.email)+'">'+escapeHtml(q.email)+'</a></div><div><strong>Section:</strong> '+section+'</div><div><strong>Child:</strong> '+child+'</div></div>'+message+'<div class="enquiry-actions"><button class="button" onclick="updateEnquiryStatus(\''+q.id+'\',\'read\')">MARK READ</button><button class="button" onclick="updateEnquiryStatus(\''+q.id+'\',\'replied\')">MARK REPLIED</button>'+(currentProfile.role==="admin"?'<button class="button danger" onclick="deleteEnquiry(\''+q.id+'\')">DELETE</button>':"")+'</div></div>';
+ }).join("");
+}
+async function updateEnquiryStatus(id,status){
+ const {error}=await db.from("join_enquiries").update({status}).eq("id",id);
+ if(error){alert("Could not update the enquiry: "+error.message);return}
+ loadEnquiries();
+}
+async function deleteEnquiry(id){
+ if(currentProfile.role!=="admin")return;
+ if(!confirm("Delete this enquiry permanently?"))return;
+ const {error}=await db.from("join_enquiries").delete().eq("id",id);
+ if(error){alert("Could not delete the enquiry: "+error.message);return}
+ loadEnquiries();
+}
+
+let editingErrorCode=null;
+async function loadErrorCodes(){
+ const list=document.getElementById("errorCodeList"); if(!list)return;
+ list.innerHTML="<p class='muted'>Loading error codes...</p>";
+ const {data,error}=await db.from("error_codes").select("id,code,meaning,details,severity").order("code",{ascending:true});
+ if(error){list.innerHTML="<p>Could not load error codes.</p>";return}
+ list.innerHTML=data.map(e=>'<div class="error-code-row"><div class="error-code-meta">'+escapeHtml(e.severity.toUpperCase())+'</div><h3>'+escapeHtml(e.code)+' — '+escapeHtml(e.meaning)+'</h3><p>'+escapeHtml(e.details||"")+'</p><div style="margin-top:10px"><button class="button secondary" onclick="editErrorCode(\''+e.id+'\')">EDIT</button> <button class="button danger" onclick="deleteErrorCode(\''+e.id+'\')">DELETE</button></div></div>').join("")||"<p class='muted'>No error codes yet.</p>";
+}
+async function editErrorCode(id){
+ const {data,error}=await db.from("error_codes").select("*").eq("id",id).single();
+ if(error)return alert("Could not load that error code.");
+ editingErrorCode=id;document.getElementById("errorCode").value=data.code;document.getElementById("errorMeaning").value=data.meaning;document.getElementById("errorSeverity").value=data.severity;document.getElementById("errorDetails").value=data.details||"";document.getElementById("cancelErrorEdit").classList.remove("hidden");
+}
+function cancelErrorEdit(){editingErrorCode=null;document.getElementById("errorCodeForm").reset();document.getElementById("errorSeverity").value="error";document.getElementById("cancelErrorEdit").classList.add("hidden")}
+document.getElementById("errorCodeForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const payload={code:document.getElementById("errorCode").value.trim().toUpperCase(),meaning:document.getElementById("errorMeaning").value.trim(),severity:document.getElementById("errorSeverity").value,details:document.getElementById("errorDetails").value.trim()};
+ const result=editingErrorCode?await db.from("error_codes").update(payload).eq("id",editingErrorCode):await db.from("error_codes").insert(payload);
+ if(result.error){alert("Could not save the error code: "+result.error.message);return}
+ cancelErrorEdit();loadErrorCodes();
+});
+async function deleteErrorCode(id){
+ if(!confirm("Delete this error code?"))return;
+ const {error}=await db.from("error_codes").delete().eq("id",id);
+ if(error){alert("Could not delete the error code: "+error.message);return}
+ loadErrorCodes();
+}
+
+function openErrorCodes(){const panel=document.getElementById("errorCodesPanel");panel.classList.remove("hidden");loadErrorCodes();window.scrollTo({top:panel.offsetTop-140,behavior:"smooth"});}\nfunction newArticle(){
+ currentArticle=null;document.getElementById("editorPanel").classList.remove("hidden");document.getElementById("editorTitle").textContent="New article";document.getElementById("articleForm").reset();document.getElementById("articleId").value="";document.getElementById("preview").classList.add("hidden");document.getElementById("deleteButton").classList.add("hidden");
+ document.getElementById("section").value=currentProfile.role==="admin"?"group":currentProfile.role;
+ if(currentProfile.role!=="admin")document.getElementById("section").disabled=true;else document.getElementById("section").disabled=false;
+ msg("editorMessage","");
+ window.scrollTo({top:document.getElementById("editorPanel").offsetTop-100,behavior:"smooth"});
+}
+async function editArticle(id){
+ const {data,error}=await db.from("news_articles").select("*").eq("id",id).single();
+ if(error||!data){alert("Article could not be loaded.");return}
+ currentArticle=data;document.getElementById("editorPanel").classList.remove("hidden");document.getElementById("editorTitle").textContent="Edit article";document.getElementById("articleId").value=data.id;document.getElementById("title").value=data.title;document.getElementById("section").value=data.section;document.getElementById("section").disabled=currentProfile.role!=="admin";document.getElementById("excerpt").value=data.excerpt||"";document.getElementById("body").value=data.body||"";document.getElementById("published").checked=data.is_published;document.getElementById("publishedAt").value=data.published_at?new Date(data.published_at).toISOString().slice(0,16):"";document.getElementById("deleteButton").classList.toggle("hidden",currentProfile.role!=="admin");msg("editorMessage","");
+ if(data.image_path){document.getElementById("preview").src=db.storage.from("news-images").getPublicUrl(data.image_path).data.publicUrl;document.getElementById("preview").classList.remove("hidden")}else document.getElementById("preview").classList.add("hidden");
+ window.scrollTo({top:document.getElementById("editorPanel").offsetTop-100,behavior:"smooth"});
+}
+async function saveArticle(e){
+ e.preventDefault();msg("editorMessage","Saving...");
+ const id=document.getElementById("articleId").value;
+ const title=document.getElementById("title").value.trim();
+ const section=document.getElementById("section").value;
+ const isPublished=document.getElementById("published").checked;
+ const dateValue=document.getElementById("publishedAt").value;
+ const payload={title,section,excerpt:document.getElementById("excerpt").value.trim(),body:document.getElementById("body").value,slug:currentArticle?.slug||slugify(title),is_published:isPublished,published_at:isPublished?(dateValue?new Date(dateValue).toISOString():new Date().toISOString()):null};
+ if(!id)payload.author_id=currentUser.id;
+ let result;
+ if(id)result=await db.from("news_articles").update(payload).eq("id",id).select().single();
+ else result=await db.from("news_articles").insert(payload).select().single();
+ if(result.error){msg("editorMessage",result.error.message,true);return}
+ let article=result.data;
+ const file=document.getElementById("image").files[0];
+ if(file){
+   if(file.size>8*1024*1024){msg("editorMessage","Please choose an image smaller than 8 MB.",true);return}
+   const ext=(file.name.split(".").pop()||"jpg").toLowerCase().replace(/[^a-z0-9]/g,"");
+   const path=currentUser.id+"/"+article.id+"-"+Date.now()+"."+ext;
+   const upload=await db.storage.from("news-images").upload(path,file,{upsert:false,contentType:file.type});
+   if(upload.error){msg("editorMessage","Article saved, but the image could not be uploaded: "+upload.error.message,true);return}
+   const update=await db.from("news_articles").update({image_path:path}).eq("id",article.id);
+   if(update.error){msg("editorMessage","Article saved, but the image link could not be saved.",true);return}
+ }
+ msg("editorMessage","Article saved.","success");currentArticle=null;await loadArticles();setTimeout(cancelEdit,600);
+}
+async function deleteCurrentArticle(){
+ if(!currentArticle||currentProfile.role!=="admin")return;
+ const password=prompt("Admin confirmation: enter the admin password to permanently delete this article.");
+ if(password===null)return;
+ const {error:loginError}=await db.auth.signInWithPassword({email:LOGIN_EMAILS.admin,password});
+ if(loginError){alert("Admin password confirmation failed. The article was not deleted.");return}
+ const {error}=await db.from("news_articles").delete().eq("id",currentArticle.id);
+ if(error){alert("The article could not be deleted: "+error.message);return}
+ cancelEdit();loadArticles();
+}
+function cancelEdit(){document.getElementById("editorPanel").classList.add("hidden");document.getElementById("articleForm").reset();currentArticle=null}
+async function signOut(){await db.auth.signOut();location.reload()}
+document.getElementById("loginForm").addEventListener("submit",login);
+document.getElementById("articleForm").addEventListener("submit",saveArticle);
+db.auth.getSession().then(async ({data})=>{if(data.session){currentUser=data.session.user;currentProfile=await getProfile();if(currentProfile)showDashboard();else await db.auth.signOut()}});
+</script>
+</body></html>
