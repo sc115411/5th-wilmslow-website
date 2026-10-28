@@ -108,7 +108,8 @@ function escapeHtml(v){const d=document.createElement("div");d.textContent=v||""
 function sectionName(s){return s==="group"?"Group":s.charAt(0).toUpperCase()+s.slice(1)}
 async function getProfile(){
  const {data,error}=await db.from("staff_profiles").select("user_id,username,role").eq("user_id",currentUser.id).single();
- if(error||!data)return null;return data;
+ if(error){console.error("Staff profile lookup failed:",error);return {__error:error.message};}
+ if(!data)return null;return data;
 }
 async function login(e){
  e.preventDefault();msg("loginMessage","Signing in...");
@@ -117,15 +118,16 @@ async function login(e){
  if(!email){msg("loginMessage","That username is not recognised.",true);return}
  const password=document.getElementById("password").value;
  const {data,error}=await db.auth.signInWithPassword({email,password});
- if(error){msg("loginMessage",error.message,true);return}
+ if(error){console.error("Staff login failed:",error);msg("loginMessage","Sign-in failed. Error code: E1003 · "+error.message,true);return}
  currentUser=data.user;currentProfile=await getProfile();
- if(!currentProfile){await db.auth.signOut();msg("loginMessage","This account has not been set up as staff yet. Please contact the site administrator.",true);return}
+ if(currentProfile?.__error){await db.auth.signOut();msg("loginMessage","Login succeeded, but the staff profile could not be loaded. Error code: E1004 · "+currentProfile.__error,true);return}
+ if(!currentProfile){await db.auth.signOut();msg("loginMessage","This account has not been set up as staff yet. Error code: E1004",true);return}
  showDashboard();
 }
 function showDashboard(){
  document.getElementById("loginPanel").classList.add("hidden");document.getElementById("dashboard").classList.remove("hidden");
  document.getElementById("welcome").textContent="Signed in as "+currentProfile.username+" · "+sectionName(currentProfile.role);
- if(currentProfile.role==="admin"){document.getElementById("adminNote").classList.remove("hidden");document.getElementById("adminTools").classList.remove("hidden");document.getElementById("errorCodesNav").classList.remove("hidden");}
+ if(currentProfile.role==="admin"){document.getElementById("adminNote").classList.remove("hidden");document.getElementById("adminTools").classList.remove("hidden");const errorNav=document.getElementById("errorCodesNav");if(errorNav)errorNav.classList.remove("hidden");}
  loadArticles();
  loadEnquiries();
 }
