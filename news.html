@@ -29,7 +29,8 @@ footer{background:var(--black);color:white;padding:55px 0 30px}.footer-grid{disp
 <script>
 const SUPABASE_URL="https://fmizontvhrytzalkndur.supabase.co";
 const SUPABASE_KEY="sb_publishable_chkN-SukwxHTI1-yxE6kDw_o9TfgE1Q";
-const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);\nlet newsArticles=[];
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let newsArticles=[];
 function toggleMenu(){document.getElementById("navLinks").classList.toggle("active")}
 function escapeHtml(v){const d=document.createElement("div");d.textContent=v||"";return d.innerHTML}
 async function loadNews(){
@@ -43,7 +44,8 @@ async function loadNews(){
  }).join("");
  if(location.hash){const slug=decodeURIComponent(location.hash.slice(1));const a=data.find(x=>x.slug===slug);if(a)openArticle(a)}
 }
-function openArticleById(id){const a=newsArticles.find(x=>x.id===id);if(a)openArticle(a)}\nfunction openArticle(a){
+function openArticleById(id){const a=newsArticles.find(x=>x.id===id);if(a)openArticle(a)}
+function openArticle(a){
  const image=a.image_path?db.storage.from("news-images").getPublicUrl(a.image_path).data.publicUrl:"";
  document.getElementById("articleContent").innerHTML=(image?'<img src="'+image+'" style="width:100%;max-height:420px;object-fit:cover;margin-bottom:25px" alt="">':"")+'<div class="date">'+new Date(a.published_at).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+'</div><h2>'+escapeHtml(a.title)+'</h2><p style="color:var(--purple);font-weight:800">'+escapeHtml(a.section)+'</p><div class="article-body">'+escapeHtml(a.body)+'</div>';
  document.getElementById("articleModal").style.display="block";document.body.style.overflow="hidden";
