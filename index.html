@@ -68,6 +68,36 @@
       margin: auto;
     }
 
+    /* SCOUT NETWORK BANNER */
+
+    .scout-links-banner {
+      background: var(--black);
+      color: white;
+      padding: 10px 0;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .scout-links-inner {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .scout-links-banner a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .scout-links-banner a:hover {
+      color: var(--yellow);
+    }
+
+    .scout-links-banner span {
+      opacity: .5;
+    }
+
     /* HEADER */
 
     header {
@@ -758,6 +788,13 @@
 
     @media (max-width: 900px) {
 
+      .scout-links-inner {
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        text-align: center;
+      }
+
       .nav-links {
         display: none;
         position: absolute;
@@ -891,6 +928,18 @@
 </head>
 
 <body>
+
+  <!-- SCOUT NETWORK LINKS -->
+
+  <div class="scout-links-banner">
+    <div class="container scout-links-inner">
+      <a href="https://www.akdistrictscouts.org.uk/" target="_blank" rel="noopener noreferrer">District Website</a>
+      <span>|</span>
+      <a href="https://www.cheshirescouts.org.uk/" target="_blank" rel="noopener noreferrer">County Website</a>
+      <span>|</span>
+      <a href="https://www.scouts.org.uk/" target="_blank" rel="noopener noreferrer">UK Scouts Website</a>
+    </div>
+  </div>
 
   <!-- HEADER -->
 
