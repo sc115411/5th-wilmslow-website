@@ -56,10 +56,23 @@ footer{background:var(--black);color:white;padding:35px 0}.footer-links{display:
     <div id="enquiryList" class="enquiry-list" style="margin-top:20px"></div>
   </div>
 
+  <div id="errorCodesPanel" class="panel hidden">
+    <div class="toolbar"><div><h2>Error codes</h2><p class="muted">Admin-only reference codes for diagnosing website problems.</p></div><button class="button secondary" type="button" onclick="loadErrorCodes()">REFRESH</button></div>
+    <form id="errorCodeForm" class="error-code-form">
+      <div class="form-row"><label for="errorCode">Code</label><input id="errorCode" maxlength="20" placeholder="E1009" required></div>
+      <div class="form-row"><label for="errorMeaning">What it means</label><input id="errorMeaning" maxlength="180" required></div>
+      <div class="form-row"><label for="errorSeverity">Severity</label><select id="errorSeverity"><option>info</option><option>warning</option><option selected>error</option><option>critical</option></select></div>
+      <div class="form-row" style="grid-column:1/-1"><label for="errorDetails">Details</label><textarea id="errorDetails" maxlength="500" style="min-height:90px" placeholder="Explain what caused the error and what staff should check."></textarea></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;grid-column:1/-1"><button class="button" type="submit">ADD ERROR CODE</button><button class="button secondary hidden" id="cancelErrorEdit" type="button" onclick="cancelErrorEdit()">CANCEL EDIT</button></div>
+    </form>
+    <div id="errorCodeList" class="error-code-list" style="margin-top:20px"></div>
+  </div>
+
   <div id="editorPanel" class="panel hidden">
     <h2 id="editorTitle">New article</h2>
     <p class="muted" style="margin-bottom:25px">Add the article details below. You can save it as a draft and publish it when you're ready.</p>
     <div id="adminNote" class="admin-note hidden">You are signed in as the administrator. You can edit any article and delete articles. Deletion is permanently protected by a second admin password check.</div>
+    <div id="adminTools" class="panel hidden" style="margin-top:20px"><h2>Admin tools</h2><p class="muted">Error codes are available below for site troubleshooting.</p><button class="button" type="button" onclick="document.getElementById('errorCodesPanel').classList.toggle('hidden');loadErrorCodes()">ERROR CODES</button></div>
     <form id="articleForm">
       <input type="hidden" id="articleId">
       <div class="form-grid">
@@ -110,7 +123,7 @@ async function login(e){
 function showDashboard(){
  document.getElementById("loginPanel").classList.add("hidden");document.getElementById("dashboard").classList.remove("hidden");
  document.getElementById("welcome").textContent="Signed in as "+currentProfile.username+" · "+sectionName(currentProfile.role);
- if(currentProfile.role==="admin")document.getElementById("adminNote").classList.remove("hidden");
+ if(currentProfile.role==="admin"){document.getElementById("adminNote").classList.remove("hidden");document.getElementById("adminTools").classList.remove("hidden");}
  loadArticles();
  loadEnquiries();
 }
@@ -149,6 +162,34 @@ async function deleteEnquiry(id){
  const {error}=await db.from("join_enquiries").delete().eq("id",id);
  if(error){alert("Could not delete the enquiry: "+error.message);return}
  loadEnquiries();
+}
+
+let editingErrorCode=null;
+async function loadErrorCodes(){
+ const list=document.getElementById("errorCodeList"); if(!list)return;
+ list.innerHTML="<p class='muted'>Loading error codes...</p>";
+ const {data,error}=await db.from("error_codes").select("id,code,meaning,details,severity").order("code",{ascending:true});
+ if(error){list.innerHTML="<p>Could not load error codes.</p>";return}
+ list.innerHTML=data.map(e=>'<div class="error-code-row"><div class="error-code-meta">'+escapeHtml(e.severity.toUpperCase())+'</div><h3>'+escapeHtml(e.code)+' — '+escapeHtml(e.meaning)+'</h3><p>'+escapeHtml(e.details||"")+'</p><div style="margin-top:10px"><button class="button secondary" onclick="editErrorCode(\''+e.id+'\')">EDIT</button> <button class="button danger" onclick="deleteErrorCode(\''+e.id+'\')">DELETE</button></div></div>').join("")||"<p class='muted'>No error codes yet.</p>";
+}
+async function editErrorCode(id){
+ const {data,error}=await db.from("error_codes").select("*").eq("id",id).single();
+ if(error)return alert("Could not load that error code.");
+ editingErrorCode=id;document.getElementById("errorCode").value=data.code;document.getElementById("errorMeaning").value=data.meaning;document.getElementById("errorSeverity").value=data.severity;document.getElementById("errorDetails").value=data.details||"";document.getElementById("cancelErrorEdit").classList.remove("hidden");
+}
+function cancelErrorEdit(){editingErrorCode=null;document.getElementById("errorCodeForm").reset();document.getElementById("errorSeverity").value="error";document.getElementById("cancelErrorEdit").classList.add("hidden")}
+document.getElementById("errorCodeForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const payload={code:document.getElementById("errorCode").value.trim().toUpperCase(),meaning:document.getElementById("errorMeaning").value.trim(),severity:document.getElementById("errorSeverity").value,details:document.getElementById("errorDetails").value.trim()};
+ const result=editingErrorCode?await db.from("error_codes").update(payload).eq("id",editingErrorCode):await db.from("error_codes").insert(payload);
+ if(result.error){alert("Could not save the error code: "+result.error.message);return}
+ cancelErrorEdit();loadErrorCodes();
+});
+async function deleteErrorCode(id){
+ if(!confirm("Delete this error code?"))return;
+ const {error}=await db.from("error_codes").delete().eq("id",id);
+ if(error){alert("Could not delete the error code: "+error.message);return}
+ loadErrorCodes();
 }
 
 function newArticle(){
