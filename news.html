@@ -21,7 +21,7 @@ footer{background:var(--black);color:white;padding:55px 0 30px}.footer-grid{disp
 </head>
 <body>
 <div class="scout-links-banner"><div class="container scout-links-inner"><a href="https://www.akdistrictscouts.org.uk/" target="_blank" rel="noopener">District Website</a><span>|</span><a href="https://www.cheshirescouts.org.uk/" target="_blank" rel="noopener">County Website</a><span>|</span><a href="https://www.scouts.org.uk/" target="_blank" rel="noopener">UK Scouts Website</a></div></div>
-<header><div class="container nav"><a href="index.html" class="brand"><div class="brand-mark"><img src="scouts-fleur-de-lis-logo.png" alt="Scouts"></div><div class="brand-text"><strong>5TH WILMSLOW</strong><span>SCOUT GROUP</span></div></a><button class="menu-button" onclick="toggleMenu()" aria-label="Open menu">☰</button><nav class="nav-links" id="navLinks"><a href="index.html#about">About us</a><a href="index.html#sections">Sections</a><a href="what-we-do.html">What we do</a><a href="news.html">News</a><a href="index.html#join" class="join-button">JOIN TODAY</a></nav></div></header>
+<header><div class="container nav"><a href="index.html" class="brand"><div class="brand-mark"><img src="scouts-fleur-de-lis-logo.png" alt="Scouts"></div><div class="brand-text"><strong>5TH WILMSLOW</strong><span>SCOUT GROUP</span></div></a><button class="menu-button" onclick="toggleMenu()" aria-label="Open menu">☰</button><nav class="nav-links" id="navLinks"><a href="index.html#about">About us</a><a href="index.html#sections">Sections</a><a href="what-we-do.html">What we do</a><a href="news.html">News</a><a href="index.html#gallery">Gallery</a><a href="index.html#volunteers">Volunteering</a><a href="index.html#contact">Contact</a><a href="index.html#join" class="join-button">JOIN TODAY</a></nav></div></header>
 <section class="hero"><div class="container"><div class="eyebrow">5th Wilmslow Scout Group</div><h1>Latest news.</h1><p>See what we've been getting up to, from section activities and camps to community projects and special events.</p></div></section>
 <main><div class="container"><div id="newsGrid" class="news-grid"><p>Loading news...</p></div></div></main>
 <div id="articleModal" class="article-modal"><article class="article-box"><button class="close" onclick="closeArticle()">CLOSE</button><div id="articleContent"></div></article></div>
@@ -36,11 +36,12 @@ function escapeHtml(v){const d=document.createElement("div");d.textContent=v||""
 async function loadNews(){
  const grid=document.getElementById("newsGrid");
  const {data,error}=await db.from("news_articles").select("id,title,slug,section,excerpt,body,image_path,published_at").eq("is_published",true).order("published_at",{ascending:false});
- if(error){grid.innerHTML="<p>Sorry, the news could not be loaded right now.</p>";return}
+ if(error){console.error("News load error:",error);grid.innerHTML="<p>Sorry, the news could not be loaded right now.</p>";return}
+ newsArticles=data;
  if(!data.length){grid.innerHTML="<p>No news articles have been published yet.</p>";return}
  grid.innerHTML=data.map(a=>{
   const image=a.image_path?db.storage.from("news-images").getPublicUrl(a.image_path).data.publicUrl:"";
-  return '<article class="news-card" id="'+encodeURIComponent(a.slug)+'">'+(image?'<img class="news-card-image" src="'+image+'" alt="">':"")+'<div class="news-card-content"><div class="date">'+new Date(a.published_at).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+'</div><h2>'+escapeHtml(a.title)+'</h2><p>'+escapeHtml(a.excerpt)+'</p><button class="read" style="border:0;background:none;cursor:pointer;font:inherit" onclick='openArticleById("${a.id}")'">READ ARTICLE →</button></div></article>';
+  return '<article class="news-card" id="'+encodeURIComponent(a.slug)+'">'+(image?'<img class="news-card-image" src="'+image+'" alt="">':"")+'<div class="news-card-content"><div class="date">'+new Date(a.published_at).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+'</div><h2>'+escapeHtml(a.title)+'</h2><p>'+escapeHtml(a.excerpt)+'</p><button class="read" style="border:0;background:none;cursor:pointer;font:inherit" onclick='openArticleById("${a.id}")'>READ ARTICLE →</button></div></article>';
  }).join("");
  if(location.hash){const slug=decodeURIComponent(location.hash.slice(1));const a=data.find(x=>x.slug===slug);if(a)openArticle(a)}
 }
