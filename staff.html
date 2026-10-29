@@ -189,7 +189,12 @@ async function deleteErrorCode(id){
  loadErrorCodes();
 }
 
-function openErrorCodes(){const panel=document.getElementById("errorCodesPanel");panel.classList.remove("hidden");loadErrorCodes();window.scrollTo({top:panel.offsetTop-140,behavior:"smooth"});}
+function openErrorCodes(){
+  const panel=document.getElementById("errorCodesPanel");
+  panel.classList.remove("hidden");
+  loadErrorCodes();
+  window.scrollTo({top:panel.offsetTop-140,behavior:"smooth"});
+}
 
 function newArticle(){
   currentArticle=null;
@@ -252,4 +257,5 @@ document.getElementById("loginForm").addEventListener("submit",login);
 document.getElementById("articleForm").addEventListener("submit",saveArticle);
 db.auth.getSession().then(async ({data})=>{if(data.session){currentUser=data.session.user;currentProfile=await getProfile();if(currentProfile)showDashboard();else await db.auth.signOut()}});
 </script>
-</body></html>
+</body>
+</html>
