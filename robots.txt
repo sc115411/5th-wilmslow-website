@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sc115411.github.io/5th-wilmslow-website/sitemap.xml
