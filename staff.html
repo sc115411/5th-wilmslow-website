@@ -19,7 +19,7 @@
   <h1>Staff login</h1>
   <p class="muted" style="margin-bottom:25px">Sign in to create, edit and publish news for your section.</p>
   <form id="loginForm">
-    <div class="form-row"><label for="username">Username</label><input id="username" autocomplete="username" required></div>
+    <div class="form-row"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" placeholder="you@5thwilmslow.co" required></div>
     <div class="form-row"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
     <button class="button" type="submit">SIGN IN</button>
     <div id="loginMessage" class="message"></div>
@@ -92,7 +92,6 @@ function toggleMenu(){document.getElementById("navLinks").classList.toggle("acti
 const SUPABASE_URL="https://fmizontvhrytzalkndur.supabase.co";
 const SUPABASE_KEY="sb_publishable_chkN-SukwxHTI1-yxE6kDw_o9TfgE1Q";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-const LOGIN_EMAILS={beavers:"beavers@5thwilmslow.co",cubs:"cubs@5thwilmslow.co",scouts:"scouts@5thwilmslow.co",admin:"admin@5thwilmslow.co"};
 let currentUser=null,currentProfile=null,currentArticle=null;
 
 function msg(id,text,error=false){const el=document.getElementById(id);el.textContent=text;el.className="message"+(error?" error":"")}
@@ -106,9 +105,7 @@ async function getProfile(){
 }
 async function login(e){
  e.preventDefault();msg("loginMessage","Signing in...");
- const username=document.getElementById("username").value.trim().toLowerCase();
- const email=LOGIN_EMAILS[username];
- if(!email){msg("loginMessage","That username is not recognised.",true);return}
+ const email=document.getElementById("email").value.trim().toLowerCase();
  const password=document.getElementById("password").value;
  const {data,error}=await db.auth.signInWithPassword({email,password});
  if(error){console.error("Staff login failed:",error);msg("loginMessage","Sign-in failed. Error code: E1003 · "+error.message,true);return}
@@ -245,7 +242,7 @@ async function deleteCurrentArticle(id){
  if(!id||currentProfile.role!="admin")return;
  const password=prompt("Admin confirmation: enter the admin password to permanently delete this article.");
  if(password===null)return;
- const {error:loginError}=await db.auth.signInWithPassword({email:LOGIN_EMAILS.admin,password});
+ const {error:loginError}=await db.auth.signInWithPassword({email:currentUser.email,password});
  if(loginError){alert("Admin password confirmation failed. The article was not deleted.");return}
  const {error}=await db.from("news_articles").delete().eq("id",id);
  if(error){alert("The article could not be deleted: "+error.message);return}
