@@ -207,7 +207,7 @@ async function loadStaffMembers(){
   if(!data.length){list.innerHTML="<p class='muted'>No staff profiles found.</p>";return}
   list.innerHTML=data.map(p=>{
     const name=p.display_name||p.username||p.email||"Unnamed";
-    return '<div class="staff-row"><div><strong>'+escapeHtml(name)+'</strong><div class="meta">'+escapeHtml(p.email||"No email")+'</div></div><div><span class="role-badge">'+escapeHtml(roleLabel(p.role))+'</span></div><div><select id="role-'+p.user_id+'"><option value="pending">Pending</option><option value="admin">Administrator</option><option value="group_leader">Group Leader</option><option value="beavers_leader">Beavers Leader</option><option value="cubs_leader">Cubs Leader</option><option value="scouts_leader">Scouts Leader</option></select></div><div><button class="text-button" type="button" onclick="saveStaffRole("'+p.user_id+'")">SAVE</button></div></div>';
+    return '<div class="staff-row"><div><strong>'+escapeHtml(name)+'</strong><div class="meta">'+escapeHtml(p.email||"No email")+'</div></div><div><span class="role-badge">'+escapeHtml(roleLabel(p.role))+'</span></div><div><select id="role-'+p.user_id+'"><option value="pending">Pending</option><option value="admin">Administrator</option><option value="group_leader">Group Leader</option><option value="beavers_leader">Beavers Leader</option><option value="cubs_leader">Cubs Leader</option><option value="scouts_leader">Scouts Leader</option></select></div><div><button class="text-button" type="button" onclick="saveStaffRole(&quot;'+p.user_id+'&quot;)">SAVE</button></div></div>';
   }).join("");
   data.forEach(p=>{const el=document.getElementById("role-"+p.user_id);if(el)el.value=p.role;});
 }
