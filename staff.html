@@ -124,11 +124,12 @@ async function login(e){
  currentUser=data.user;currentProfile=await getProfile();
  if(currentProfile?.__error){await db.auth.signOut();msg("loginMessage","Login succeeded, but the staff profile could not be loaded. Error code: E1004 · "+currentProfile.__error,true);return}
  if(!currentProfile){await db.auth.signOut();msg("loginMessage","This account has not been set up as staff yet. Error code: E1004",true);return}
+ if(currentProfile.role==="pending"){await db.auth.signOut();msg("loginMessage","Your staff account has been created, but a Group Administrator still needs to assign your role. Error code: E1004",true);return}
  showDashboard();
 }
 function showDashboard(){
  document.getElementById("loginPanel").classList.add("hidden");document.getElementById("dashboard").classList.remove("hidden");
- document.getElementById("welcome").textContent="Signed in as "+currentProfile.username+" · "+sectionName(currentProfile.role);
+ document.getElementById("welcome").textContent="Signed in as "+(currentProfile.display_name||currentProfile.email||currentProfile.username)+" · "+roleLabel(currentProfile.role);
  if(isAdminRole(currentProfile.role)){document.getElementById("adminNote").classList.remove("hidden");document.getElementById("adminTools").classList.remove("hidden");const errorNav=document.getElementById("errorCodesNav");const staffNav=document.getElementById("staffManagementNav");if(errorNav)errorNav.style.display="inline-block";if(staffNav)staffNav.classList.remove("hidden");} else {document.getElementById("adminNote").classList.add("hidden");document.getElementById("adminTools").classList.add("hidden");}
  loadArticles();
  loadEnquiries();
@@ -295,7 +296,7 @@ function cancelEdit(){document.getElementById("editorPanel").classList.add("hidd
 async function signOut(){await db.auth.signOut();location.reload()}
 document.getElementById("loginForm").addEventListener("submit",login);
 document.getElementById("articleForm").addEventListener("submit",saveArticle);
-db.auth.getSession().then(async ({data})=>{if(data.session){currentUser=data.session.user;currentProfile=await getProfile();if(currentProfile)showDashboard();else await db.auth.signOut()}});
+db.auth.getSession().then(async ({data})=>{if(data.session){currentUser=data.session.user;currentProfile=await getProfile();if(currentProfile && currentProfile.role!=="pending")showDashboard();else await db.auth.signOut()}});
 </script>
 </body>
 </html>
