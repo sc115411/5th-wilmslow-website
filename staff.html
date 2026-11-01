@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0"></script>
 <style>
 :root{--purple:#7413dc;--purple-dark:#4d0b91;--teal:#00a794;--yellow:#ffe627;--cream:#f7f4ef;--black:#151515;--grey:#666;--red:#c62828;--max-width:1200px}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Nunito Sans",Arial,sans-serif;color:var(--black);line-height:1.6;background:var(--cream)}a{color:inherit;text-decoration:none}.container{width:min(var(--max-width),calc(100% - 40px));margin:0 auto}.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:900}.muted{color:var(--grey)}.hidden{display:none!important}.button{background:var(--purple);color:white;border:none;border-radius:999px;padding:14px 26px;font-weight:900;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s ease}.button:hover{background:var(--purple-dark)}.button.secondary{background:#f0ebf9;color:var(--purple);border:1px solid rgba(116,19,220,.15)}.button.secondary:hover{background:#e9e0f8}.message{margin-top:12px;min-height:22px;font-weight:700}.message.error{color:var(--red)}.message.success{color:var(--teal)}.scout-links-banner{background:var(--black);color:white;padding:10px 0;font-size:13px;font-weight:800}.scout-links-inner{display:flex;justify-content:flex-end;gap:24px}.scout-links-banner a:hover{color:var(--yellow)}.dashboard-nav{background:var(--purple);position:sticky;top:0;z-index:100}.dashboard-nav-inner{display:flex;align-items:center;gap:20px;justify-content:flex-start;padding:10px 0}.dashboard-nav a,.dashboard-nav button{color:white;font-weight:900;letter-spacing:1px;background:none;border:none;padding:10px 0;cursor:pointer}.dashboard-nav a.active,.dashboard-nav a:hover,.dashboard-nav button:hover{color:var(--yellow)}header{background:white;position:sticky;top:0;z-index:1000}.nav{height:82px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center}.brand-mark img{width:24px;height:24px}.brand-text{font-size:18px;letter-spacing:.08em;font-weight:900}.nav-links{display:flex;align-items:center;gap:24px;font-weight:800}.nav-links a:hover{color:var(--purple)}.menu-button{display:none;background:none;border:0;color:var(--black);font-size:30px;cursor:pointer}main{padding:70px 0}.panel{background:white;padding:40px;box-shadow:0 8px 30px rgba(0,0,0,.06);margin-bottom:30px}.panel h1{font-size:48px;line-height:1;margin-bottom:12px}.panel h2{font-size:30px;line-height:1.1;margin-bottom:10px}.auth-box{max-width:520px;margin:auto}.form-row{margin-bottom:18px}label{font-weight:900;display:block;margin-bottom:6px}input,select,textarea{width:100%;padding:13px 15px;border:1px solid #ccc;border-radius:12px;font:inherit;background:white}.textarea{min-height:120px}button{font:inherit}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.article-list,.enquiry-list,.error-code-list{display:grid;gap:15px}.article-row,.enquiry-row,.error-code-row{border:1px solid #ddd;padding:20px;border-radius:16px;background:var(--cream)}.article-row,.enquiry-row{display:grid;gap:12px}.article-row h3,.enquiry-row h3,.error-code-row h3{font-size:22px;line-height:1.2;margin-bottom:6px}.meta{font-size:14px;color:var(--grey);font-weight:700}.status{display:inline-block;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.status.published{background:#dff7f2;color:#0c7d68}.status.draft{background:#fef2c6;color:#8a6500}.enquiry-top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.enquiry-status{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;text-transform:uppercase}.enquiry-status.new{background:#e8f0ff;color:#1f5cc7}.enquiry-status.in_progress{background:#fef2c6;color:#8a6500}.enquiry-status.replied{background:#dff7f2;color:#0c7d68}.enquiry-status.closed{background:#f1f1f1;color:#333}.enquiry-message{margin-top:8px;padding-top:8px;border-top:1px solid #ddd;color:#333}.enquiry-actions,.article-actions,.error-code-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.text-button{background:none;border:1px solid #ccc;padding:8px 12px;border-radius:999px;font-weight:800;cursor:pointer}.text-button.danger{color:var(--red);border-color:rgba(198,40,40,.25)}.error-code-row{position:relative}.error-code-meta{position:absolute;top:16px;right:16px;background:#f3e8ff;color:var(--purple);padding:5px 10px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.error-code-row h3{padding-right:110px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}.check{display:flex;align-items:center;gap:10px}.check input{width:auto}.preview{max-width:260px;margin-top:10px;border-radius:12px;display:block}.admin-note{background:#fff7d6;border:1px solid #f2d879;padding:15px 20px;border-radius:14px;margin-bottom:20px}.error-code-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}.error-code-form .form-row:last-of-type{grid-column:1/-1}.error-code-form textarea{min-height:90px}.footer{background:var(--black);color:white;padding:35px 0}.footer-links{display:flex;gap:20px;flex-wrap:wrap;color:#ccc}footer a:hover{color:var(--yellow)}@media(max-width:800px){.menu-button{display:block}.nav-links{display:none}.nav-links.active{display:flex;position:absolute;top:82px;left:0;right:0;background:white;flex-direction:column;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,.08)}.form-grid,.error-code-form{grid-template-columns:1fr}.panel{padding:25px}.panel h1{font-size:36px}.brand-text{font-size:16px}.dashboard-nav-inner{flex-wrap:wrap}} </style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Nunito Sans",Arial,sans-serif;color:var(--black);line-height:1.6;background:var(--cream)}a{color:inherit;text-decoration:none}.container{width:min(var(--max-width),calc(100% - 40px));margin:0 auto}.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:900}.muted{color:var(--grey)}.hidden{display:none!important}.button{background:var(--purple);color:white;border:none;border-radius:999px;padding:14px 26px;font-weight:900;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.2s ease}.button:hover{background:var(--purple-dark)}.button.secondary{background:#f0ebf9;color:var(--purple);border:1px solid rgba(116,19,220,.15)}.button.secondary:hover{background:#e9e0f8}.message{margin-top:12px;min-height:22px;font-weight:700}.message.error{color:var(--red)}.message.success{color:var(--teal)}.scout-links-banner{background:var(--black);color:white;padding:10px 0;font-size:13px;font-weight:800}.scout-links-inner{display:flex;justify-content:flex-end;gap:24px}.scout-links-banner a:hover{color:var(--yellow)}.dashboard-nav{background:var(--purple);position:sticky;top:0;z-index:100}.dashboard-nav-inner{display:flex;align-items:center;gap:20px;justify-content:flex-start;padding:10px 0}.dashboard-nav a,.dashboard-nav button{color:white;font-weight:900;letter-spacing:1px;background:none;border:none;padding:10px 0;cursor:pointer}.dashboard-nav a.active,.dashboard-nav a:hover,.dashboard-nav button:hover{color:var(--yellow)}header{background:white;position:sticky;top:0;z-index:1000}.nav{height:82px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center}.brand-mark img{width:24px;height:24px}.brand-text{font-size:18px;letter-spacing:.08em;font-weight:900}.nav-links{display:flex;align-items:center;gap:24px;font-weight:800}.nav-links a:hover{color:var(--purple)}.menu-button{display:none;background:none;border:0;color:var(--black);font-size:30px;cursor:pointer}main{padding:70px 0}.panel{background:white;padding:40px;box-shadow:0 8px 30px rgba(0,0,0,.06);margin-bottom:30px}.panel h1{font-size:48px;line-height:1;margin-bottom:12px}.panel h2{font-size:30px;line-height:1.1;margin-bottom:10px}.auth-box{max-width:520px;margin:auto}.form-row{margin-bottom:18px}label{font-weight:900;display:block;margin-bottom:6px}input,select,textarea{width:100%;padding:13px 15px;border:1px solid #ccc;border-radius:12px;font:inherit;background:white}.textarea{min-height:120px}button{font:inherit}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.article-list,.enquiry-list,.error-code-list{display:grid;gap:15px}.article-row,.enquiry-row,.error-code-row{border:1px solid #ddd;padding:20px;border-radius:16px;background:var(--cream)}.article-row,.enquiry-row{display:grid;gap:12px}.article-row h3,.enquiry-row h3,.error-code-row h3{font-size:22px;line-height:1.2;margin-bottom:6px}.meta{font-size:14px;color:var(--grey);font-weight:700}.status{display:inline-block;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.status.published{background:#dff7f2;color:#0c7d68}.status.draft{background:#fef2c6;color:#8a6500}.enquiry-top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.enquiry-status{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;text-transform:uppercase}.enquiry-status.new{background:#e8f0ff;color:#1f5cc7}.enquiry-status.in_progress{background:#fef2c6;color:#8a6500}.enquiry-status.replied{background:#dff7f2;color:#0c7d68}.enquiry-status.closed{background:#f1f1f1;color:#333}.enquiry-message{margin-top:8px;padding-top:8px;border-top:1px solid #ddd;color:#333}.enquiry-actions,.article-actions,.error-code-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.text-button{background:none;border:1px solid #ccc;padding:8px 12px;border-radius:999px;font-weight:800;cursor:pointer}.text-button.danger{color:var(--red);border-color:rgba(198,40,40,.25)}.staff-row{border:1px solid #ddd;padding:18px;border-radius:16px;background:var(--cream);display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:15px;align-items:center}.staff-role{font-weight:900}.role-badge{display:inline-block;padding:5px 10px;border-radius:999px;background:#f0ebf9;color:var(--purple);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.error-code-row{position:relative}.error-code-meta{position:absolute;top:16px;right:16px;background:#f3e8ff;color:var(--purple);padding:5px 10px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.error-code-row h3{padding-right:110px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}.check{display:flex;align-items:center;gap:10px}.check input{width:auto}.preview{max-width:260px;margin-top:10px;border-radius:12px;display:block}.admin-note{background:#fff7d6;border:1px solid #f2d879;padding:15px 20px;border-radius:14px;margin-bottom:20px}.error-code-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}.error-code-form .form-row:last-of-type{grid-column:1/-1}.error-code-form textarea{min-height:90px}.footer{background:var(--black);color:white;padding:35px 0}.footer-links{display:flex;gap:20px;flex-wrap:wrap;color:#ccc}footer a:hover{color:var(--yellow)}@media(max-width:800px){.menu-button{display:block}.nav-links{display:none}.nav-links.active{display:flex;position:absolute;top:82px;left:0;right:0;background:white;flex-direction:column;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,.08)}.form-grid,.error-code-form{grid-template-columns:1fr}.panel{padding:25px}.panel h1{font-size:36px}.brand-text{font-size:16px}.dashboard-nav-inner{flex-wrap:wrap}} </style>
 </head>
 <body>
 <div class="scout-links-banner"><div class="container scout-links-inner"><a href="https://www.akdistrictscouts.org.uk/" target="_blank" rel="noopener">District Website</a><span>|</span><a href="https://www.scouts.org.uk/" target="_blank" rel="noopener">Scouts UK</a><span>|</span><a href="https://www.facebook.com/5thWilmslow/" target="_blank" rel="noopener">Facebook</a></div></div>
@@ -27,7 +27,7 @@
 </div>
 
 <div id="dashboard" class="hidden">
-  <div class="dashboard-nav"><div class="container dashboard-nav-inner"><a href="#newsSection" class="active">NEWS</a><a href="#joiningSection">JOINING ENQUIRIES</a><button id="errorCodesNav" type="button" onclick="openErrorCodes()">ERROR CODES</button></div></div>
+  <div class="dashboard-nav"><div class="container dashboard-nav-inner"><a href="#newsSection" class="active">NEWS</a><a href="#joiningSection">JOINING ENQUIRIES</a><button id="staffManagementNav" type="button" class="hidden" onclick="openStaffManagement()">STAFF MEMBERS</button><button id="errorCodesNav" type="button" onclick="openErrorCodes()">ERROR CODES</button></div></div>
 
   <div class="container" style="padding-top:30px">
     <div class="panel">
@@ -48,6 +48,15 @@
         <button class="button secondary" type="button" onclick="loadEnquiries()">REFRESH</button>
       </div>
       <div id="enquiryList" class="enquiry-list" style="margin-top:20px"></div>
+    </div>
+
+    <div id="staffManagementPanel" class="panel hidden">
+      <div class="toolbar">
+        <div><h2>Staff members</h2><p class="muted">Assign each individual staff account to the area they are allowed to manage. New Auth accounts appear as Pending until you assign a role.</p></div>
+        <button class="button secondary" type="button" onclick="loadStaffMembers()">REFRESH</button>
+      </div>
+      <div class="admin-note" style="margin-top:20px">This changes database permissions, not just what buttons appear on screen. A Cubs Leader account cannot create or edit Beavers or Scouts news.</div>
+      <div id="staffList" class="article-list" style="margin-top:20px"></div>
     </div>
 
     <div id="errorCodesPanel" class="panel hidden">
@@ -97,9 +106,12 @@ let currentUser=null,currentProfile=null,currentArticle=null;
 function msg(id,text,error=false){const el=document.getElementById(id);el.textContent=text;el.className="message"+(error?" error":"")}
 function slugify(s){return s.toLowerCase().trim().replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").slice(0,200)+"-"+Date.now().toString(36)}
 function escapeHtml(v){const d=document.createElement("div");d.textContent=v||"";return d.innerHTML}
+function roleLabel(r){return ({pending:"Pending",admin:"Administrator",group_leader:"Group Leader",beavers_leader:"Beavers Leader",cubs_leader:"Cubs Leader",scouts_leader:"Scouts Leader"})[r]||r}
+function roleSection(r){return ({beavers_leader:"beavers",cubs_leader:"cubs",scouts_leader:"scouts"})[r]||null}
+function isAdminRole(r){return r==="admin"||r==="group_leader"}
 function sectionName(s){return s==="group"?"Group":s.charAt(0).toUpperCase()+s.slice(1)}
 async function getProfile(){
- const {data,error}=await db.from("staff_profiles").select("user_id,username,role").eq("user_id",currentUser.id).single();
+ const {data,error}=await db.from("staff_profiles").select("user_id,username,email,display_name,role").eq("user_id",currentUser.id).single();
  if(error){console.error("Staff profile lookup failed:",error);return {__error:error.message};}
  if(!data)return null;return data;
 }
@@ -117,18 +129,18 @@ async function login(e){
 function showDashboard(){
  document.getElementById("loginPanel").classList.add("hidden");document.getElementById("dashboard").classList.remove("hidden");
  document.getElementById("welcome").textContent="Signed in as "+currentProfile.username+" · "+sectionName(currentProfile.role);
- if(currentProfile.role==="admin"){document.getElementById("adminNote").classList.remove("hidden");document.getElementById("adminTools").classList.remove("hidden");const errorNav=document.getElementById("errorCodesNav");if(errorNav)errorNav.style.display="inline-block";} else {document.getElementById("adminNote").classList.add("hidden");document.getElementById("adminTools").classList.add("hidden");}
+ if(isAdminRole(currentProfile.role)){document.getElementById("adminNote").classList.remove("hidden");document.getElementById("adminTools").classList.remove("hidden");const errorNav=document.getElementById("errorCodesNav");const staffNav=document.getElementById("staffManagementNav");if(errorNav)errorNav.style.display="inline-block";if(staffNav)staffNav.classList.remove("hidden");} else {document.getElementById("adminNote").classList.add("hidden");document.getElementById("adminTools").classList.add("hidden");}
  loadArticles();
  loadEnquiries();
 }
 async function loadArticles(){
  const list=document.getElementById("articleList");list.innerHTML="<p class='muted'>Loading...</p>";
  let query=db.from("news_articles").select("id,title,section,excerpt,is_published,published_at,updated_at,author_id").order("updated_at",{ascending:false});
- if(currentProfile.role!="admin")query=query.eq("author_id",currentUser.id);
+ const managedSection=roleSection(currentProfile.role);if(managedSection)query=query.eq("section",managedSection);
  const {data,error}=await query;
  if(error){list.innerHTML="<p>Could not load articles.</p>";return}
  if(!data.length){list.innerHTML="<p class='muted'>No articles yet. Create your first one.</p>";return}
- list.innerHTML=data.map(a=>'<div class="article-row"><div><h3>'+escapeHtml(a.title)+'</h3><div class="meta">'+sectionName(a.section)+' · '+(a.is_published?'<span class="status published">Published</span>':'<span class="status draft">Draft</span>')+'</div></div><div class="article-actions"><button class="text-button" type="button" onclick="editArticle('+a.id+')">Edit</button>'+(currentProfile.role==="admin"?'<button class="text-button danger" type="button" onclick="deleteCurrentArticle('+a.id+')">Delete</button>':'')+'</div></div>').join("");
+ list.innerHTML=data.map(a=>'<div class="article-row"><div><h3>'+escapeHtml(a.title)+'</h3><div class="meta">'+sectionName(a.section)+' · '+(a.is_published?'<span class="status published">Published</span>':'<span class="status draft">Draft</span>')+'</div></div><div class="article-actions"><button class="text-button" type="button" onclick='editArticle("'+a.id+'")'>Edit</button>'+(isAdminRole(currentProfile.role)?'<button class="text-button danger" type="button" onclick='deleteCurrentArticle("'+a.id+'")'>Delete</button>':'')+'</div></div>').join("");
 }
 async function loadEnquiries(){
  const list=document.getElementById("enquiryList");
@@ -142,7 +154,7 @@ async function loadEnquiries(){
    const message=q.message?'<div class="enquiry-message">'+escapeHtml(q.message)+'</div>':"";
    const child=q.child_name?escapeHtml(q.child_name)+(q.child_age?" (age "+escapeHtml(String(q.child_age))+")":""):"Not provided";
    const section=q.section?escapeHtml(q.section):"Not specified";
-    return '<div class="enquiry-row"><div class="enquiry-top"><div><h3>'+escapeHtml(q.parent_name)+'</h3><div class="meta">'+escapeHtml(q.enquiry)+' · '+date+'</div></div><span class="enquiry-status '+status+'">'+status.replace('_',' ')+'</span></div><div class="meta">Child: '+child+' · Section: '+section+'</div>'+message+'<div class="enquiry-actions"><select onchange="updateEnquiryStatus('+q.id+', this.value)"><option value="new" '+(status==="new"?"selected":"")+'>New</option><option value="in_progress" '+(status==="in_progress"?"selected":"")+'>In progress</option><option value="replied" '+(status==="replied"?"selected":"")+'>Replied</option><option value="closed" '+(status==="closed"?"selected":"")+'>Closed</option></select>'+(currentProfile.role==="admin"?'<button class="text-button danger" type="button" onclick="deleteEnquiry('+q.id+')">Delete</button>':'')+'</div></div>';
+    return '<div class="enquiry-row"><div class="enquiry-top"><div><h3>'+escapeHtml(q.parent_name)+'</h3><div class="meta">'+escapeHtml(q.enquiry)+' · '+date+'</div></div><span class="enquiry-status '+status+'">'+status.replace('_',' ')+'</span></div><div class="meta">Child: '+child+' · Section: '+section+'</div>'+message+'<div class="enquiry-actions"><select onchange='updateEnquiryStatus("'+q.id+'", this.value)'><option value="new" '+(status==="new"?"selected":"")+'>New</option><option value="in_progress" '+(status==="in_progress"?"selected":"")+'>In progress</option><option value="replied" '+(status==="replied"?"selected":"")+'>Replied</option><option value="closed" '+(status==="closed"?"selected":"")+'>Closed</option></select>'+(currentProfile.role==="admin"?'<button class="text-button danger" type="button" onclick='deleteEnquiry("'+q.id+'")'>Delete</button>':'')+'</div></div>';
  }).join("");
 }
 async function updateEnquiryStatus(id,status){
@@ -151,7 +163,7 @@ async function updateEnquiryStatus(id,status){
  loadEnquiries();
 }
 async function deleteEnquiry(id){
- if(currentProfile.role!="admin")return;
+ if(!isAdminRole(currentProfile.role))return;
  if(!confirm("Delete this enquiry permanently?"))return;
  const {error}=await db.from("join_enquiries").delete().eq("id",id);
  if(error){alert("Could not delete the enquiry: "+error.message);return}
@@ -164,7 +176,7 @@ async function loadErrorCodes(){
  list.innerHTML="<p class='muted'>Loading error codes...</p>";
  const {data,error}=await db.from("error_codes").select("id,code,meaning,details,severity").order("code",{ascending:true});
  if(error){list.innerHTML="<p>Could not load error codes.</p>";return}
- list.innerHTML=data.map(e=>'<div class="error-code-row"><div class="error-code-meta">'+escapeHtml(e.severity.toUpperCase())+'</div><h3>'+escapeHtml(e.code)+' — '+escapeHtml(e.meaning)+'</h3><p>'+escapeHtml(e.details||"")+'</p><div class="error-code-actions"><button class="text-button" type="button" onclick="editErrorCode('+e.id+')">Edit</button><button class="text-button danger" type="button" onclick="deleteErrorCode('+e.id+')">Delete</button></div></div>').join("");
+ list.innerHTML=data.map(e=>'<div class="error-code-row"><div class="error-code-meta">'+escapeHtml(e.severity.toUpperCase())+'</div><h3>'+escapeHtml(e.code)+' — '+escapeHtml(e.meaning)+'</h3><p>'+escapeHtml(e.details||"")+'</p><div class="error-code-actions"><button class="text-button" type="button" onclick='editErrorCode("'+e.id+'")'>Edit</button><button class="text-button danger" type="button" onclick='deleteErrorCode("'+e.id+'")'>Delete</button></div></div>').join("");
 }
 async function editErrorCode(id){
  const {data,error}=await db.from("error_codes").select("*").eq("id",id).single();
@@ -186,6 +198,36 @@ async function deleteErrorCode(id){
  loadErrorCodes();
 }
 
+async function loadStaffMembers(){
+  if(!isAdminRole(currentProfile.role))return;
+  const list=document.getElementById("staffList");
+  list.innerHTML="<p class='muted'>Loading staff...</p>";
+  const {data,error}=await db.from("staff_profiles").select("user_id,username,email,display_name,role").order("role",{ascending:true}).order("email",{ascending:true});
+  if(error){list.innerHTML="<p>Could not load staff members: "+escapeHtml(error.message)+"</p>";return}
+  if(!data.length){list.innerHTML="<p class='muted'>No staff profiles found.</p>";return}
+  list.innerHTML=data.map(p=>{
+    const name=p.display_name||p.username||p.email||"Unnamed";
+    return '<div class="staff-row"><div><strong>'+escapeHtml(name)+'</strong><div class="meta">'+escapeHtml(p.email||"No email")+'</div></div><div><span class="role-badge">'+escapeHtml(roleLabel(p.role))+'</span></div><div><select id="role-'+p.user_id+'"><option value="pending">Pending</option><option value="admin">Administrator</option><option value="group_leader">Group Leader</option><option value="beavers_leader">Beavers Leader</option><option value="cubs_leader">Cubs Leader</option><option value="scouts_leader">Scouts Leader</option></select></div><div><button class="text-button" type="button" onclick="saveStaffRole("'+p.user_id+'")">SAVE</button></div></div>';
+  }).join("");
+  data.forEach(p=>{const el=document.getElementById("role-"+p.user_id);if(el)el.value=p.role;});
+}
+async function saveStaffRole(userId){
+  if(!isAdminRole(currentProfile.role))return;
+  const select=document.getElementById("role-"+userId);if(!select)return;
+  const role=select.value;
+  const {error}=await db.from("staff_profiles").update({role}).eq("user_id",userId);
+  if(error){alert("Could not change that staff role: "+error.message);return}
+  if(userId===currentUser.id){currentProfile.role=role;showDashboard();}
+  await loadStaffMembers();
+}
+function openStaffManagement(){
+  if(!isAdminRole(currentProfile.role))return;
+  const panel=document.getElementById("staffManagementPanel");
+  panel.classList.remove("hidden");
+  loadStaffMembers();
+  window.scrollTo({top:panel.offsetTop-140,behavior:"smooth"});
+}
+
 function openErrorCodes(){
   const panel=document.getElementById("errorCodesPanel");
   panel.classList.remove("hidden");
@@ -200,15 +242,15 @@ function newArticle(){
   document.getElementById("articleForm").reset();
   document.getElementById("preview").src="";
   document.getElementById("preview").classList.add("hidden");
-  document.getElementById("section").value=currentProfile.role==="admin"?"group":currentProfile.role;
-  if(currentProfile.role!=="admin")document.getElementById("section").disabled=true;else document.getElementById("section").disabled=false;
+  document.getElementById("section").value=roleSection(currentProfile.role)||"group";
+  if(!isAdminRole(currentProfile.role))document.getElementById("section").disabled=true;else document.getElementById("section").disabled=false;
   msg("editorMessage","");
   window.scrollTo({top:document.getElementById("editorPanel").offsetTop-100,behavior:"smooth"});
 }
 async function editArticle(id){
  const {data,error}=await db.from("news_articles").select("*").eq("id",id).single();
  if(error||!data){alert("Article could not be loaded.");return}
- currentArticle=data;document.getElementById("editorPanel").classList.remove("hidden");document.getElementById("editorTitle").textContent="Edit article";document.getElementById("articleId").value=data.id;document.getElementById("title").value=data.title;document.getElementById("section").value=data.section;document.getElementById("publishedAt").value=data.published_at?new Date(data.published_at).toISOString().slice(0,16):"";document.getElementById("excerpt").value=data.excerpt||"";document.getElementById("body").value=data.body||"";document.getElementById("published").checked=!!data.is_published;document.getElementById("section").disabled=currentProfile.role!=="admin";if(data.image_path){document.getElementById("preview").src=db.storage.from("news-images").getPublicUrl(data.image_path).data.publicUrl;document.getElementById("preview").classList.remove("hidden")}else{document.getElementById("preview").src="";document.getElementById("preview").classList.add("hidden")}
+ currentArticle=data;document.getElementById("editorPanel").classList.remove("hidden");document.getElementById("editorTitle").textContent="Edit article";document.getElementById("articleId").value=data.id;document.getElementById("title").value=data.title;document.getElementById("section").value=data.section;document.getElementById("publishedAt").value=data.published_at?new Date(data.published_at).toISOString().slice(0,16):"";document.getElementById("excerpt").value=data.excerpt||"";document.getElementById("body").value=data.body||"";document.getElementById("published").checked=!!data.is_published;document.getElementById("section").disabled=!isAdminRole(currentProfile.role);if(data.image_path){document.getElementById("preview").src=db.storage.from("news-images").getPublicUrl(data.image_path).data.publicUrl;document.getElementById("preview").classList.remove("hidden")}else{document.getElementById("preview").src="";document.getElementById("preview").classList.add("hidden")}
  msg("editorMessage","");
  window.scrollTo({top:document.getElementById("editorPanel").offsetTop-100,behavior:"smooth"});
 }
@@ -221,6 +263,7 @@ async function saveArticle(e){
  const dateValue=document.getElementById("publishedAt").value;
  const payload={title,section,excerpt:document.getElementById("excerpt").value.trim(),body:document.getElementById("body").value,slug:currentArticle?.slug||slugify(title),is_published:isPublished,published_at:dateValue?new Date(dateValue).toISOString():null};
  if(!id)payload.author_id=currentUser.id;
+ if(!isAdminRole(currentProfile.role) && section!==roleSection(currentProfile.role)){msg("editorMessage","Your account can only manage "+roleLabel(currentProfile.role).replace(" Leader","")+" news.",true);return;}
  let result;
  if(id)result=await db.from("news_articles").update(payload).eq("id",id).select().single();
  else result=await db.from("news_articles").insert(payload).select().single();
@@ -239,7 +282,7 @@ async function saveArticle(e){
  msg("editorMessage","Article saved.","success");currentArticle=null;await loadArticles();setTimeout(cancelEdit,600);
 }
 async function deleteCurrentArticle(id){
- if(!id||currentProfile.role!="admin")return;
+ if(!id||!isAdminRole(currentProfile.role))return;
  const password=prompt("Admin confirmation: enter the admin password to permanently delete this article.");
  if(password===null)return;
  const {error:loginError}=await db.auth.signInWithPassword({email:currentUser.email,password});
