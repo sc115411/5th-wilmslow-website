@@ -41,7 +41,7 @@ async function loadNews(){
  if(!data.length){grid.innerHTML="<p>No news articles have been published yet.</p>";return}
  grid.innerHTML=data.map(a=>{
   const image=a.image_path?db.storage.from("news-images").getPublicUrl(a.image_path).data.publicUrl:"";
-  return '<article class="news-card" id="'+encodeURIComponent(a.slug)+'">'+(image?'<img class="news-card-image" src="'+image+'" alt="">':"")+'<div class="news-card-content"><div class="date">'+new Date(a.published_at).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+'</div><h2>'+escapeHtml(a.title)+'</h2><p>'+escapeHtml(a.excerpt)+'</p><button class="read" style="border:0;background:none;cursor:pointer;font:inherit" onclick='openArticleById("${a.id}")'>READ ARTICLE →</button></div></article>';
+  return '<article class="news-card" id="'+encodeURIComponent(a.slug)+'">'+(image?'<img class="news-card-image" src="'+image+'" alt="">':"")+'<div class="news-card-content"><div class="date">'+new Date(a.published_at).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})+'</div><h2>'+escapeHtml(a.title)+'</h2><p>'+escapeHtml(a.excerpt)+'</p><button class="read" style="border:0;background:none;cursor:pointer;font:inherit" onclick="openArticleById(&quot;'+a.id+'&quot;)">READ ARTICLE →</button></div></article>';
  }).join("");
  if(location.hash){const slug=decodeURIComponent(location.hash.slice(1));const a=data.find(x=>x.slug===slug);if(a)openArticle(a)}
 }
