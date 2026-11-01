@@ -141,7 +141,7 @@ async function loadArticles(){
  const {data,error}=await query;
  if(error){list.innerHTML="<p>Could not load articles.</p>";return}
  if(!data.length){list.innerHTML="<p class='muted'>No articles yet. Create your first one.</p>";return}
- list.innerHTML=data.map(a=>'<div class="article-row"><div><h3>'+escapeHtml(a.title)+'</h3><div class="meta">'+sectionName(a.section)+' · '+(a.is_published?'<span class="status published">Published</span>':'<span class="status draft">Draft</span>')+'</div></div><div class="article-actions"><button class="text-button" type="button" onclick='editArticle("'+a.id+'")'>Edit</button>'+(isAdminRole(currentProfile.role)?'<button class="text-button danger" type="button" onclick='deleteCurrentArticle("'+a.id+'")'>Delete</button>':'')+'</div></div>').join("");
+ list.innerHTML=data.map(a=>'<div class="article-row"><div><h3>'+escapeHtml(a.title)+'</h3><div class="meta">'+sectionName(a.section)+' · '+(a.is_published?'<span class="status published">Published</span>':'<span class="status draft">Draft</span>')+'</div></div><div class="article-actions"><button class="text-button" type="button" onclick="editArticle(&quot;'+a.id+'&quot;)">Edit</button>'+(isAdminRole(currentProfile.role)?'<button class="text-button danger" type="button" onclick="deleteCurrentArticle(&quot;'+a.id+'&quot;)">Delete</button>':'')+'</div></div>').join("");
 }
 async function loadEnquiries(){
  const list=document.getElementById("enquiryList");
@@ -155,7 +155,7 @@ async function loadEnquiries(){
    const message=q.message?'<div class="enquiry-message">'+escapeHtml(q.message)+'</div>':"";
    const child=q.child_name?escapeHtml(q.child_name)+(q.child_age?" (age "+escapeHtml(String(q.child_age))+")":""):"Not provided";
    const section=q.section?escapeHtml(q.section):"Not specified";
-    return '<div class="enquiry-row"><div class="enquiry-top"><div><h3>'+escapeHtml(q.parent_name)+'</h3><div class="meta">'+escapeHtml(q.enquiry)+' · '+date+'</div></div><span class="enquiry-status '+status+'">'+status.replace('_',' ')+'</span></div><div class="meta">Child: '+child+' · Section: '+section+'</div>'+message+'<div class="enquiry-actions"><select onchange='updateEnquiryStatus("'+q.id+'", this.value)'><option value="new" '+(status==="new"?"selected":"")+'>New</option><option value="in_progress" '+(status==="in_progress"?"selected":"")+'>In progress</option><option value="replied" '+(status==="replied"?"selected":"")+'>Replied</option><option value="closed" '+(status==="closed"?"selected":"")+'>Closed</option></select>'+(currentProfile.role==="admin"?'<button class="text-button danger" type="button" onclick='deleteEnquiry("'+q.id+'")'>Delete</button>':'')+'</div></div>';
+    return '<div class="enquiry-row"><div class="enquiry-top"><div><h3>'+escapeHtml(q.parent_name)+'</h3><div class="meta">'+escapeHtml(q.enquiry)+' · '+date+'</div></div><span class="enquiry-status '+status+'">'+status.replace('_',' ')+'</span></div><div class="meta">Child: '+child+' · Section: '+section+'</div>'+message+'<div class="enquiry-actions"><select onchange="updateEnquiryStatus(&quot;'+q.id+'&quot;, this.value)"><option value="new" '+(status==="new"?"selected":"")+'>New</option><option value="in_progress" '+(status==="in_progress"?"selected":"")+'>In progress</option><option value="replied" '+(status==="replied"?"selected":"")+'>Replied</option><option value="closed" '+(status==="closed"?"selected":"")+'>Closed</option></select>'+(currentProfile.role==="admin"?'<button class="text-button danger" type="button" onclick="deleteEnquiry(&quot;'+q.id+'&quot;)">Delete</button>':'')+'</div></div>';
  }).join("");
 }
 async function updateEnquiryStatus(id,status){
@@ -177,7 +177,7 @@ async function loadErrorCodes(){
  list.innerHTML="<p class='muted'>Loading error codes...</p>";
  const {data,error}=await db.from("error_codes").select("id,code,meaning,details,severity").order("code",{ascending:true});
  if(error){list.innerHTML="<p>Could not load error codes.</p>";return}
- list.innerHTML=data.map(e=>'<div class="error-code-row"><div class="error-code-meta">'+escapeHtml(e.severity.toUpperCase())+'</div><h3>'+escapeHtml(e.code)+' — '+escapeHtml(e.meaning)+'</h3><p>'+escapeHtml(e.details||"")+'</p><div class="error-code-actions"><button class="text-button" type="button" onclick='editErrorCode("'+e.id+'")'>Edit</button><button class="text-button danger" type="button" onclick='deleteErrorCode("'+e.id+'")'>Delete</button></div></div>').join("");
+ list.innerHTML=data.map(e=>'<div class="error-code-row"><div class="error-code-meta">'+escapeHtml(e.severity.toUpperCase())+'</div><h3>'+escapeHtml(e.code)+' — '+escapeHtml(e.meaning)+'</h3><p>'+escapeHtml(e.details||"")+'</p><div class="error-code-actions"><button class="text-button" type="button" onclick="editErrorCode(&quot;'+e.id+'&quot;)">Edit</button><button class="text-button danger" type="button" onclick="deleteErrorCode(&quot;'+e.id+'&quot;)">Delete</button></div></div>').join("");
 }
 async function editErrorCode(id){
  const {data,error}=await db.from("error_codes").select("*").eq("id",id).single();
